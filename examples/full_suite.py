@@ -3,7 +3,7 @@ from pyspark.sql import DataFrame, SparkSession
 
 from autofeat import make_features
 from autofeat.types import Dataset
-from examples.make_data import make_transactions
+from examples.data import make_transactions
 
 spark = (
     SparkSession.builder.master("local[*]")
