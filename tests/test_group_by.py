@@ -42,7 +42,7 @@ def test_correlation_between_features_values(make_dataset_to_correlation):
 def test_get_categories_from_categorical_data(make_dataset):
     categories = group_by.get_categories_from_categorical_data(make_dataset)
 
-    assert categories == [{"values": ["C", "B", "A"], "col_name": "product_type"}]
+    assert categories == [{"values": ["A", "B", "C"], "col_name": "product_type"}]
 
 
 def test_numerical_statistics_expression(make_dataset):
@@ -87,7 +87,7 @@ def test_categorical_statistics_expression(make_dataset):
 
     assert (
         str(features)
-        == "[Column<'count(CASE WHEN (product_type = C) THEN product_type END) AS `product_type=C__count___product_type`'>, Column<'count(CASE WHEN (product_type = B) THEN product_type END) AS `product_type=B__count___product_type`'>, Column<'count(CASE WHEN (product_type = A) THEN product_type END) AS `product_type=A__count___product_type`'>, Column<'count(product_type) AS count___product_type'>, Column<'count(product_type) AS countDistinct___product_type'>]"
+        == "[Column<'count(CASE WHEN (product_type = A) THEN product_type END) AS `product_type=A__count___product_type`'>, Column<'count(CASE WHEN (product_type = B) THEN product_type END) AS `product_type=B__count___product_type`'>, Column<'count(CASE WHEN (product_type = C) THEN product_type END) AS `product_type=C__count___product_type`'>, Column<'count(product_type) AS count___product_type'>, Column<'count(product_type) AS countDistinct___product_type'>]"
     )
 
 
@@ -100,9 +100,9 @@ def test_categorical_statistics_values(make_dataset):
         data={
             "consumer_id_ref": [1, 2, 3],
             "date_ref": ["2022-01-04", "2022-01-04", "2022-01-04"],
-            "product_type=C__count___product_type": [1, 1, 1],
-            "product_type=B__count___product_type": [1, 1, 1],
             "product_type=A__count___product_type": [1, 1, 1],
+            "product_type=B__count___product_type": [1, 1, 1],
+            "product_type=C__count___product_type": [1, 1, 1],
             "count___product_type": [3, 3, 3],
             "countDistinct___product_type": [3, 3, 3],
         }

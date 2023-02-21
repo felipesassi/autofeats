@@ -48,4 +48,6 @@ class Dataset:
 
         cnd = cnd_1 & cnd_2 & cnd_3
 
+        self.or_table = self.table
+
         self.table = self.public.join(self.table, on=cnd, how="left")

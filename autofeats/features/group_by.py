@@ -9,7 +9,7 @@ from autofeats.types import Dataset
 
 def get_categories_from_categorical_data(df: Dataset) -> List[Dict[str, Any]]:
     return [
-        {"values": df.table.select(c).distinct().toPandas()[c].tolist(), "col_name": c}  # type: ignore
+        {"values": df.or_table.select(c).distinct().toPandas()[c].tolist(), "col_name": c}  # type: ignore
         for c in df.categorical_cols
     ]
 
