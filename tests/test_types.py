@@ -1,7 +1,7 @@
 import pyspark.sql.functions as F
 
-from autofeat import __version__
-from autofeat.types import Dataset
+from autofeats import __version__
+from autofeats.types import Dataset
 from tests.utils import make_transactions, spark
 
 

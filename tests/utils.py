@@ -3,7 +3,7 @@ import pyspark.sql.functions as F
 import pytest
 from pyspark.sql import SparkSession
 
-from autofeat.types import Dataset
+from autofeats.types import Dataset
 
 
 @pytest.fixture(scope="session")

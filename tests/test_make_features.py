@@ -1,6 +1,6 @@
 import pytest
 
-from autofeat import make_features
+from autofeats import make_features
 from tests.utils import features, make_dataset, make_dataset_to_correlation, spark
 
 

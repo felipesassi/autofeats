@@ -4,7 +4,7 @@ import pyspark.sql.functions as F
 from pyspark.sql import DataFrame
 from pyspark.sql.window import Window
 
-from autofeat.types import Dataset
+from autofeats.types import Dataset
 
 
 def last_observation_value(df: Dataset) -> DataFrame:

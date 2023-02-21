@@ -4,7 +4,7 @@ from typing import Any, Callable, Dict, List
 import pyspark.sql.functions as F
 from pyspark.sql import Column
 
-from autofeat.types import Dataset
+from autofeats.types import Dataset
 
 
 def get_categories_from_categorical_data(df: Dataset) -> List[Dict[str, Any]]:

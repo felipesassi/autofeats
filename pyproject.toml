@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "autofeat"
+name = "autofeats"
 version = "0.1.0"
 description = ""
 authors = ["Felipe Sassi <felipesassi@outlook.com>"]

@@ -3,19 +3,19 @@ from typing import Optional
 
 from pyspark.sql import DataFrame
 
-from autofeat.features.group_by import (
+from autofeats.features.group_by import (
     categorical_statistics,
     correlation_between_features,
     numerical_statistics,
     statistics_of_numerical_data_in_categorical_groups,
 )
-from autofeat.features.window import (
+from autofeats.features.window import (
     first_observation_value,
     lags,
     last_observation_value,
     rate_between_actual_and_past_value,
 )
-from autofeat.types import Dataset
+from autofeats.types import Dataset
 
 OPERATIONS = {
     "numerical_statistics": numerical_statistics,

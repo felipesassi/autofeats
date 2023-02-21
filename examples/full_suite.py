@@ -1,8 +1,8 @@
 import pyspark.sql.functions as F
 from pyspark.sql import DataFrame, SparkSession
 
-from autofeat import make_features
-from autofeat.types import Dataset
+from autofeats import make_features
+from autofeats.types import Dataset
 from examples.data import make_transactions
 
 spark = (

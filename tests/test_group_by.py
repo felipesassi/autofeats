@@ -2,7 +2,7 @@ import pandas as pd
 import pandas.testing as pd_test
 import pyspark.sql.functions as F
 
-from autofeat.features import group_by
+from autofeats.features import group_by
 from tests.utils import features, make_dataset, make_dataset_to_correlation, spark
 
 

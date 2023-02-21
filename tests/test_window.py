@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pandas.testing as pd_test
 
-from autofeat.features import window
+from autofeats.features import window
 from tests.utils import features, make_dataset, spark
 
 

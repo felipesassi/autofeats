@@ -1,4 +1,4 @@
-from autofeat import __version__
+from autofeats import __version__
 
 
 def test_version():
