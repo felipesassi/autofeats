@@ -4,34 +4,34 @@ from typing import Optional
 from pyspark.sql import DataFrame
 
 from autofeat.features.group_by import (
-    make_features_based_on_categorical_statistics,
-    make_features_based_on_correlation_between_features,
-    make_features_based_on_numerical_statistics,
-    make_features_based_on_statistics_of_numerical_data_in_categorical_groups,
+    categorical_statistics,
+    correlation_between_features,
+    numerical_statistics,
+    statistics_of_numerical_data_in_categorical_groups,
 )
 from autofeat.features.window import (
-    make_features_based_on_first_observation_value,
-    make_features_based_on_lags,
-    make_features_based_on_last_observation_value,
-    make_features_based_on_rate_between_actual_and_past_value,
+    first_observation_value,
+    lags,
+    last_observation_value,
+    rate_between_actual_and_past_value,
 )
 from autofeat.types import Dataset
 
 OPERATIONS = {
-    "numerical_statistics": make_features_based_on_numerical_statistics,
-    "numerical_in_categorical_groups": make_features_based_on_statistics_of_numerical_data_in_categorical_groups,
-    "correlation": make_features_based_on_correlation_between_features,
-    "categorical_statistics": make_features_based_on_categorical_statistics,
+    "numerical_statistics": numerical_statistics,
+    "numerical_in_categorical_groups": statistics_of_numerical_data_in_categorical_groups,
+    "correlation": correlation_between_features,
+    "categorical_statistics": categorical_statistics,
 }
 
 FIRST_LAST = {
-    "first_observation_features": make_features_based_on_first_observation_value,
-    "last_observation_features": make_features_based_on_last_observation_value,
+    "first_observation_features": first_observation_value,
+    "last_observation_features": last_observation_value,
 }
 
 LAG = {
-    "lags": make_features_based_on_lags,
-    "increase_rate": make_features_based_on_rate_between_actual_and_past_value,
+    "lags": lags,
+    "increase_rate": rate_between_actual_and_past_value,
 }
 
 

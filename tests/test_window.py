@@ -6,8 +6,8 @@ from autofeat.features import window
 from tests.utils import features, make_dataset, spark
 
 
-def test_make_features_based_on_last_observation_value(make_dataset):
-    results = window.make_features_based_on_last_observation_value(make_dataset).toPandas()
+def test_last_observation_value(make_dataset):
+    results = window.last_observation_value(make_dataset).toPandas()
 
     baseline = pd.DataFrame(
         data={
@@ -20,8 +20,8 @@ def test_make_features_based_on_last_observation_value(make_dataset):
     assert pd_test.assert_frame_equal(results, baseline) is None
 
 
-def test_make_features_based_on_first_observation_value(make_dataset):
-    results = window.make_features_based_on_first_observation_value(make_dataset).toPandas()
+def test_first_observation_value(make_dataset):
+    results = window.first_observation_value(make_dataset).toPandas()
 
     baseline = pd.DataFrame(
         data={
@@ -34,10 +34,8 @@ def test_make_features_based_on_first_observation_value(make_dataset):
     assert pd_test.assert_frame_equal(results, baseline) is None
 
 
-def test_make_features_based_on_rate_between_actual_and_past_value(make_dataset, features):
-    results = window.make_features_based_on_rate_between_actual_and_past_value(
-        make_dataset, features
-    ).toPandas()
+def test_rate_between_actual_and_past_value(make_dataset, features):
+    results = window.rate_between_actual_and_past_value(make_dataset, features).toPandas()
 
     baseline = pd.DataFrame(
         data={
@@ -50,8 +48,8 @@ def test_make_features_based_on_rate_between_actual_and_past_value(make_dataset,
     assert pd_test.assert_frame_equal(results, baseline) is None
 
 
-def test_make_features_based_on_lags(make_dataset, features):
-    results = window.make_features_based_on_lags(make_dataset, features).toPandas()
+def test_lags(make_dataset, features):
+    results = window.lags(make_dataset, features).toPandas()
 
     baseline = pd.DataFrame(
         data={

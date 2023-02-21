@@ -6,22 +6,18 @@ from autofeat.features import group_by
 from tests.utils import features, make_dataset, make_dataset_to_correlation, spark
 
 
-def test_make_features_based_on_correlation_between_features_expression(
+def test_correlation_between_features_expression(
     make_dataset_to_correlation,
 ):
-    features = group_by.make_features_based_on_correlation_between_features(
-        make_dataset_to_correlation
-    )
+    features = group_by.correlation_between_features(make_dataset_to_correlation)
 
     assert str(features) == str(
         [F.corr("paid_value", "discount").alias("corr_between___paid_value_discount")]
     )
 
 
-def test_make_features_based_on_correlation_between_features_values(make_dataset_to_correlation):
-    features = group_by.make_features_based_on_correlation_between_features(
-        make_dataset_to_correlation
-    )
+def test_correlation_between_features_values(make_dataset_to_correlation):
+    features = group_by.correlation_between_features(make_dataset_to_correlation)
 
     results = (
         make_dataset_to_correlation.table.groupby(
@@ -49,8 +45,8 @@ def test_get_categories_from_categorical_data(make_dataset):
     assert categories == [{"values": ["C", "B", "A"], "col_name": "product_type"}]
 
 
-def test_make_features_based_on_numerical_statistics_expression(make_dataset):
-    features = group_by.make_features_based_on_numerical_statistics(make_dataset)
+def test_numerical_statistics_expression(make_dataset):
+    features = group_by.numerical_statistics(make_dataset)
 
     assert (
         str(features)
@@ -58,8 +54,8 @@ def test_make_features_based_on_numerical_statistics_expression(make_dataset):
     )
 
 
-def test_make_features_based_on_numerical_statistics_values(make_dataset):
-    features = group_by.make_features_based_on_numerical_statistics(make_dataset)
+def test_numerical_statistics_values(make_dataset):
+    features = group_by.numerical_statistics(make_dataset)
 
     results = (
         make_dataset.table.groupby(
@@ -86,8 +82,8 @@ def test_make_features_based_on_numerical_statistics_values(make_dataset):
     assert pd_test.assert_frame_equal(results, baseline) is None
 
 
-def test_make_features_based_on_categorical_statistics_expression(make_dataset):
-    features = group_by.make_features_based_on_categorical_statistics(make_dataset)
+def test_categorical_statistics_expression(make_dataset):
+    features = group_by.categorical_statistics(make_dataset)
 
     assert (
         str(features)
@@ -95,8 +91,8 @@ def test_make_features_based_on_categorical_statistics_expression(make_dataset):
     )
 
 
-def test_make_features_based_on_categorical_statistics_values(make_dataset):
-    features = group_by.make_features_based_on_categorical_statistics(make_dataset)
+def test_categorical_statistics_values(make_dataset):
+    features = group_by.categorical_statistics(make_dataset)
 
     results = make_dataset.table.groupby("consumer_id_ref", "date_ref").agg(*features).toPandas()
 

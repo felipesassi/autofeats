@@ -14,7 +14,7 @@ def get_categories_from_categorical_data(df: Dataset) -> List[Dict[str, Any]]:
     ]
 
 
-def make_features_based_on_correlation_between_features(df: Dataset) -> List[Column]:
+def correlation_between_features(df: Dataset) -> List[Column]:
     numerical_cols = df.numerical_cols
 
     cols_pairs = list(combinations(numerical_cols, 2))
@@ -22,7 +22,7 @@ def make_features_based_on_correlation_between_features(df: Dataset) -> List[Col
     return [F.corr(c[0], c[1]).alias(f"corr_between___{c[0]}_{c[1]}") for c in cols_pairs]
 
 
-def make_features_based_on_numerical_statistics(df: Dataset) -> List[Column]:
+def numerical_statistics(df: Dataset) -> List[Column]:
     functions: List[Callable[[Column], Column]] = [
         F.sum,
         F.mean,
@@ -71,11 +71,11 @@ def count_categorical_values(df: Dataset) -> List[Column]:
     ]
 
 
-def make_features_based_on_categorical_statistics(df: Dataset) -> List[Column]:
+def categorical_statistics(df: Dataset) -> List[Column]:
     return count_occurences_of_each_category(df) + count_categorical_values(df)
 
 
-def make_features_based_on_statistics_of_numerical_data_in_categorical_groups(
+def statistics_of_numerical_data_in_categorical_groups(
     df: Dataset,
 ) -> List[Column]:
     functions: List[Callable[[Column], Column]] = [

@@ -7,7 +7,7 @@ from pyspark.sql.window import Window
 from autofeat.types import Dataset
 
 
-def make_features_based_on_last_observation_value(df: Dataset) -> DataFrame:
+def last_observation_value(df: Dataset) -> DataFrame:
     w = (
         Window()
         .partitionBy(df.public_join_key_col, df.public_join_date_col)
@@ -27,7 +27,7 @@ def make_features_based_on_last_observation_value(df: Dataset) -> DataFrame:
     )
 
 
-def make_features_based_on_first_observation_value(df: Dataset) -> DataFrame:
+def first_observation_value(df: Dataset) -> DataFrame:
     w = (
         Window()
         .partitionBy(df.public_join_key_col, df.public_join_date_col)
@@ -47,7 +47,7 @@ def make_features_based_on_first_observation_value(df: Dataset) -> DataFrame:
     )
 
 
-def make_features_based_on_rate_between_actual_and_past_value(
+def rate_between_actual_and_past_value(
     df: Dataset, features: DataFrame, *args, **kwargs
 ) -> DataFrame:
     w = Window().partitionBy(df.public_join_key_col).orderBy(df.public_join_date_col)
@@ -64,7 +64,7 @@ def make_features_based_on_rate_between_actual_and_past_value(
     )
 
 
-def make_features_based_on_lags(df: Dataset, features: DataFrame, *args, **kwargs) -> DataFrame:
+def lags(df: Dataset, features: DataFrame, *args, **kwargs) -> DataFrame:
     w = Window().partitionBy(df.public_join_key_col).orderBy(df.public_join_date_col)
 
     n_lags = kwargs.get("options", {"n_lags": [1]})["n_lags"]
