@@ -1,0 +1,7 @@
+group\_by module
+================
+
+.. automodule:: group_by
+   :members:
+   :undoc-members:
+   :show-inheritance:

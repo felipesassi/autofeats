@@ -36,6 +36,41 @@ LAG = {
 
 
 def run(df: Dataset, suites: list, options: dict) -> Optional[DataFrame]:
+    """
+    This function will run the feature creation process based on the
+    input dataframe, selected features and users'options.
+
+    Each suite will make one type of features:
+
+    - numerical_statistics: numerical statistics (mean, kurtosis, etc) calculated for each numerical column;
+    - numerical_in_categorical_groups: numerical statistics (mean, kurtosis, etc) calculated for each numerical column calculated inside each category
+    - correlation: correlation between numerical features
+
+    Example::
+
+        features: DataFrame = make_features.run(
+            df=df,
+            suites=[
+                "numerical_statistics",
+                "numerical_in_categorical_groups",
+                "correlation",
+                "categorical_statistics",
+                "first_observation_features",
+                "last_observation_features",
+                "lags",
+                "increase_rate",
+            ],
+            options={"n_lags": [1]},
+        )
+
+    Args:
+        df (Dataset): Dataset with the necessary tables
+        suites (list): Suites selected to create features
+        options (dict): Options to the suites
+
+    Returns:
+        Optional[DataFrame]: Dataframe with features
+    """
     features = None
 
     join = lambda x, y: x.join(y, on=[df.public_join_key_col, df.public_join_date_col], how="inner")

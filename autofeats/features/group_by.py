@@ -8,6 +8,17 @@ from autofeats.types import Dataset
 
 
 def get_categories_from_categorical_data(df: Dataset) -> List[Dict[str, Any]]:
+    """
+    This function extracts categorical data from the categorical columns. This
+    data is transformed in a dictionary with the column name as key and column
+    values as values.
+
+    Args:
+        df (Dataset): Dataset initialized with necessary information
+
+    Returns:
+        List[Dict[str, Any]]: List with information about columns categories.
+    """
     return [
         {"values": df.or_table.select(c).distinct().toPandas()[c].tolist(), "col_name": c}  # type: ignore
         for c in df.categorical_cols
@@ -15,6 +26,17 @@ def get_categories_from_categorical_data(df: Dataset) -> List[Dict[str, Any]]:
 
 
 def correlation_between_features(df: Dataset) -> List[Column]:
+    """
+    This function generates the expressions used to calculate the
+    correlation between numerical features. All numerical features will be
+    combinated into groups of two.
+
+    Args:
+        df (Dataset): Dataset initialized with necessary information
+
+    Returns:
+        List[Column]: List with the operations to apply in the dataframe
+    """
     numerical_cols = df.numerical_cols
 
     cols_pairs = list(combinations(numerical_cols, 2))
@@ -43,6 +65,14 @@ def numerical_statistics(df: Dataset) -> List[Column]:
 
 
 def count_occurences_of_each_category(df: Dataset) -> List[Column]:
+    """testes
+
+    Args:
+        df (Dataset): _description_
+
+    Returns:
+        List[Column]: test
+    """
     functions: List[Callable[[Column], Column]] = [F.count]
 
     categories_to_analyze = get_categories_from_categorical_data(df)
