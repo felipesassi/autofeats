@@ -1,0 +1,5 @@
+examples.full\_suite module
+---------------------------
+
+.. examples/use_cases
+
