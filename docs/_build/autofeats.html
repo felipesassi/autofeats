@@ -160,7 +160,7 @@
 <li class="toctree-l1"><a class="reference internal" href="types.html">Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Group by based features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html#window-based-features">Window based features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/use_cases.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/use_cases.html">How to use</a></li>
 </ul>
 
 </div>
@@ -204,17 +204,54 @@
 input dataframe, selected features and users’options.</p>
 <p>Each suite will make one type of features:</p>
 <ul class="simple">
-<li><p>numerical_statistics: numerical statistics (mean, kurtosis, etc) calculated for each numerical column;</p></li>
-<li><p>numerical_in_categorical_groups: numerical statistics (mean, kurtosis, etc) calculated for each numerical column calculated inside each category</p></li>
-<li><p>correlation: correlation between numerical features</p></li>
-<li><p>categorical_statistics:</p></li>
-<li><p>first_observation_features:</p></li>
-<li><p>last_observation_features:</p></li>
-<li><p>lags:</p></li>
-<li><p>increase_rate:</p></li>
+<li><p><strong>numerical_statistics</strong>: numerical statistics (mean, kurtosis, etc) calculated for each numerical column;</p></li>
+<li><p><strong>numerical_in_categorical_groups</strong>: numerical statistics (mean, kurtosis, etc) calculated for each numerical column calculated inside each category</p></li>
+<li><p><strong>correlation</strong>: correlation between numerical features</p></li>
+<li><p><strong>categorical_statistics</strong>: count and count distinct applied to the categorical columns</p></li>
+<li><p><strong>first_observation_features</strong>: value of the first observation (in the time window defined)</p></li>
+<li><p><strong>last_observation_features</strong>: value of the last observation (in the time window defined)</p></li>
+<li><p><strong>lags</strong>: lag features</p></li>
+<li><p><strong>increase_rate</strong>: increase rate between features</p></li>
 </ul>
+<p>The lags and increase_rate suites will be applied to the features table generated after
+the use of one or more suites.</p>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">features</span><span class="p">:</span> <span class="n">DataFrame</span> <span class="o">=</span> <span class="n">make_features</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyspark.sql.functions</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">from</span> <span class="nn">examples.data</span> <span class="kn">import</span> <span class="n">make_transactions</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">SparkSession</span>
+
+<span class="kn">from</span> <span class="nn">autofeats</span> <span class="kn">import</span> <span class="n">make_features</span>
+<span class="kn">from</span> <span class="nn">autofeats.types</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="n">spark</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;local[*]&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.executor.memory&quot;</span><span class="p">,</span> <span class="s2">&quot;6g&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.driver.memory&quot;</span><span class="p">,</span> <span class="s2">&quot;6g&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">transactions</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">make_transactions</span><span class="p">())</span>
+
+<span class="n">public</span> <span class="o">=</span> <span class="n">transactions</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;consumer_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;consumer_id_ref&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">F</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="s2">&quot;paymnent_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;date_ref&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="n">transactions</span><span class="p">,</span>
+    <span class="n">primary_key_col</span><span class="o">=</span><span class="s2">&quot;transaction_id&quot;</span><span class="p">,</span>
+    <span class="n">table_join_key_col</span><span class="o">=</span><span class="s2">&quot;consumer_id&quot;</span><span class="p">,</span>
+    <span class="n">table_join_date_col</span><span class="o">=</span><span class="s2">&quot;paymnent_date&quot;</span><span class="p">,</span>
+    <span class="n">numerical_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;paid_value&quot;</span><span class="p">,</span> <span class="s2">&quot;discount&quot;</span><span class="p">],</span>
+    <span class="n">categorical_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;product_type&quot;</span><span class="p">,</span> <span class="s2">&quot;buy_type&quot;</span><span class="p">],</span>
+    <span class="n">public</span><span class="o">=</span><span class="n">public</span><span class="p">,</span>
+    <span class="n">public_join_key_col</span><span class="o">=</span><span class="s2">&quot;consumer_id_ref&quot;</span><span class="p">,</span>
+    <span class="n">public_join_date_col</span><span class="o">=</span><span class="s2">&quot;date_ref&quot;</span><span class="p">,</span>
+    <span class="n">subtract_in_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">subtract_in_end</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+    <span class="n">time_unit</span><span class="o">=</span><span class="s2">&quot;day&quot;</span>
+<span class="p">)</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="n">make_features</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
     <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
     <span class="n">suites</span><span class="o">=</span><span class="p">[</span>
         <span class="s2">&quot;numerical_statistics&quot;</span><span class="p">,</span>

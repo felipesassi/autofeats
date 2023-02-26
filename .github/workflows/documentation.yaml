@@ -2,7 +2,7 @@ name: Docs
 
 run-name: ${{ github.actor }} is generating docs
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   docs:

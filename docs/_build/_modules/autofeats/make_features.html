@@ -159,6 +159,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../types.html">Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../features.html">Group by based features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../features.html#window-based-features">Window based features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/use_cases.html">Example</a></li>
 </ul>
 
 </div>
@@ -237,20 +238,56 @@
 
 <span class="sd">    Each suite will make one type of features:</span>
 
-<span class="sd">    - numerical_statistics: numerical statistics (mean, kurtosis, etc) calculated for each numerical column;</span>
-<span class="sd">    - numerical_in_categorical_groups: numerical statistics (mean, kurtosis, etc) calculated for each numerical column calculated inside each category</span>
-<span class="sd">    - correlation: correlation between numerical features</span>
-<span class="sd">    - categorical_statistics:</span>
-<span class="sd">    - first_observation_features:</span>
-<span class="sd">    - last_observation_features:</span>
-<span class="sd">    - lags:</span>
-<span class="sd">    - increase_rate:</span>
+<span class="sd">    - **numerical_statistics**: numerical statistics (mean, kurtosis, etc) calculated for each numerical column;</span>
+<span class="sd">    - **numerical_in_categorical_groups**: numerical statistics (mean, kurtosis, etc) calculated for each numerical column calculated inside each category</span>
+<span class="sd">    - **correlation**: correlation between numerical features</span>
+<span class="sd">    - **categorical_statistics**: count and count distinct applied to the categorical columns</span>
+<span class="sd">    - **first_observation_features**: value of the first observation (in the time window defined)</span>
+<span class="sd">    - **last_observation_features**: value of the last observation (in the time window defined)</span>
+<span class="sd">    - **lags**: lag features</span>
+<span class="sd">    - **increase_rate**: increase rate between features</span>
 
-<span class="sd">    </span>
+<span class="sd">    The lags and increase_rate suites will be applied to the features table generated after</span>
+<span class="sd">    the use of one or more suites.</span>
 
 <span class="sd">    Example::</span>
 
-<span class="sd">        features: DataFrame = make_features.run(</span>
+<span class="sd">        import pyspark.sql.functions as F</span>
+<span class="sd">        from examples.data import make_transactions</span>
+<span class="sd">        from pyspark.sql import DataFrame, SparkSession</span>
+
+<span class="sd">        from autofeats import make_features</span>
+<span class="sd">        from autofeats.types import Dataset</span>
+
+<span class="sd">        spark = (</span>
+<span class="sd">            SparkSession.builder.master(&quot;local[*]&quot;)</span>
+<span class="sd">            .config(&quot;spark.executor.memory&quot;, &quot;6g&quot;)</span>
+<span class="sd">            .config(&quot;spark.driver.memory&quot;, &quot;6g&quot;)</span>
+<span class="sd">            .getOrCreate()</span>
+<span class="sd">        )</span>
+
+<span class="sd">        transactions = spark.createDataFrame(make_transactions())</span>
+
+<span class="sd">        public = transactions.groupby(F.col(&quot;consumer_id&quot;).alias(&quot;consumer_id_ref&quot;)).agg(</span>
+<span class="sd">            F.max(&quot;paymnent_date&quot;).alias(&quot;date_ref&quot;)</span>
+<span class="sd">        )</span>
+
+<span class="sd">        df = Dataset(</span>
+<span class="sd">            table=transactions,</span>
+<span class="sd">            primary_key_col=&quot;transaction_id&quot;,</span>
+<span class="sd">            table_join_key_col=&quot;consumer_id&quot;,</span>
+<span class="sd">            table_join_date_col=&quot;paymnent_date&quot;,</span>
+<span class="sd">            numerical_cols=[&quot;paid_value&quot;, &quot;discount&quot;],</span>
+<span class="sd">            categorical_cols=[&quot;product_type&quot;, &quot;buy_type&quot;],</span>
+<span class="sd">            public=public,</span>
+<span class="sd">            public_join_key_col=&quot;consumer_id_ref&quot;,</span>
+<span class="sd">            public_join_date_col=&quot;date_ref&quot;,</span>
+<span class="sd">            subtract_in_start=0,</span>
+<span class="sd">            subtract_in_end=90,</span>
+<span class="sd">            time_unit=&quot;day&quot;</span>
+<span class="sd">        )</span>
+
+<span class="sd">        features = make_features.run(</span>
 <span class="sd">            df=df,</span>
 <span class="sd">            suites=[</span>
 <span class="sd">                &quot;numerical_statistics&quot;,</span>
@@ -356,5 +393,6 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/scripts/furo.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     </body>
 </html>

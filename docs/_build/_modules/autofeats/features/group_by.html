@@ -155,10 +155,11 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../autofeats.html">make_features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../features.html">features.group_by</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../features.html#autofeats-features-window">autofeats.features.window</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../types.html">autofeats.types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autofeats.html">Make features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../types.html">Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../features.html">Group by based features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../features.html#window-based-features">Window based features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/use_cases.html">How to use</a></li>
 </ul>
 
 </div>
@@ -208,6 +209,10 @@
 <span class="sd">    data is transformed in a dictionary with the column name as key and column</span>
 <span class="sd">    values as values.</span>
 
+<span class="sd">    Example of return::</span>
+
+<span class="sd">        {&quot;product_type&quot;: [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]}</span>
+
 <span class="sd">    Args:</span>
 <span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
 
@@ -225,6 +230,10 @@
 <span class="sd">    This function generates the expressions used to calculate the</span>
 <span class="sd">    correlation between numerical features. All numerical features will be</span>
 <span class="sd">    combinated into groups of two.</span>
+
+<span class="sd">    Example of operation::</span>
+
+<span class="sd">        F.corr(F.col(&quot;x_1&quot;), F.col(&quot;x_2&quot;)).alias(&quot;corr_between___x_1_x_2&quot;)</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
@@ -245,6 +254,10 @@
 <span class="sd">    numerical columns in the dataset. The statistics will be</span>
 <span class="sd">    calculated inside a time window, defined in the dataset</span>
 <span class="sd">    instantiation.</span>
+
+<span class="sd">    Example of operation::</span>
+
+<span class="sd">        F.mean(F.col(&quot;paid_value&quot;)).alias(&quot;mean___paid_value&quot;)</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
@@ -277,6 +290,10 @@
 <span class="sd">    This function counts the occorurences of each category inside a</span>
 <span class="sd">    categorical column.</span>
 
+<span class="sd">    Example of operation::</span>
+
+<span class="sd">        F.count(F.when(F.col(&quot;product_type&quot;) == &quot;A&quot;, F.col(&quot;product_type&quot;))) </span>
+
 <span class="sd">    Args:</span>
 <span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
 
@@ -302,6 +319,10 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function will apply count and countDistinct to</span>
 <span class="sd">    the categorical columns as a whole.</span>
+
+<span class="sd">    Example of operation::</span>
+
+<span class="sd">        F.count(F.col(&quot;product_type&quot;)) </span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
@@ -342,6 +363,10 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function will calculate numerical statistics using a</span>
 <span class="sd">    pivoted version of the dataset.</span>
+
+<span class="sd">    Example of operation::</span>
+
+<span class="sd">        F.mean(F.when(F.col(&quot;product_type&quot;) == &quot;A&quot;, F.col(&quot;paid_value&quot;))) </span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
@@ -408,5 +433,6 @@
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/scripts/furo.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     </body>
 </html>

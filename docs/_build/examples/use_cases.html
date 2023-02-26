@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="Group by based features" href="../features.html" />
 
     <!-- Generated with Sphinx 6.1.3 and Furo 2022.12.07 -->
-        <title>Example - autofeats documentation</title>
+        <title>How to use - autofeats documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -134,7 +134,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -160,7 +160,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../types.html">Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../features.html">Group by based features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../features.html#window-based-features">Window based features</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Example</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">How to use</a></li>
 </ul>
 
 </div>
@@ -189,7 +189,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -452,8 +452,8 @@ div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
-<section id="Example">
-<h1>Example<a class="headerlink" href="#Example" title="Permalink to this heading">#</a></h1>
+<section id="How-to-use">
+<h1>How to use<a class="headerlink" href="#How-to-use" title="Permalink to this heading">#</a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -463,6 +463,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<section id="Init-Pyspark">
+<h2>Init Pyspark<a class="headerlink" href="#Init-Pyspark" title="Permalink to this heading">#</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -504,6 +506,9 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 23/02/19 17:14:55 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 </pre></div></div>
 </div>
+</section>
+<section id="Import-the-data">
+<h2>Import the data<a class="headerlink" href="#Import-the-data" title="Permalink to this heading">#</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -607,6 +612,9 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 </table>
 </div></div>
 </div>
+</section>
+<section id="Generate-public">
+<h2>Generate public<a class="headerlink" href="#Generate-public" title="Permalink to this heading">#</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -617,6 +625,9 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 </pre></div>
 </div>
 </div>
+</section>
+<section id="Generate-Dataset">
+<h2>Generate Dataset<a class="headerlink" href="#Generate-Dataset" title="Permalink to this heading">#</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -651,6 +662,9 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 </pre></div>
 </div>
 </div>
+</section>
+<section id="numerical_statistics-example">
+<h2>numerical_statistics example<a class="headerlink" href="#numerical_statistics-example" title="Permalink to this heading">#</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
@@ -716,6 +730,9 @@ Number of features: 16
 <tr><td>29</td><td>2022-03-01</td><td>21210.539323911595</td><td>285</td><td>1010.0256820910283</td><td>13.571428571428571</td><td>103.5649985708696</td><td>10.856202966836188</td><td>831.0771002092232</td><td>0</td><td>1213.2540898678285</td><td>25</td><td>-0.42409637366403885</td><td>-1.6466942148760342</td><td>0.47735984043558566</td><td>-0.07354907590508099</td></tr>
 </table></div>
 </div>
+</section>
+<section id="numerical_in_categorical_groups-example">
+<h2>numerical_in_categorical_groups example<a class="headerlink" href="#numerical_in_categorical_groups-example" title="Permalink to this heading">#</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -807,6 +824,9 @@ Number of features: 268
 <tr><td>29</td><td>2022-03-01</td><td>922.5596334496767</td><td>10</td><td>922.5596334496767</td><td>10.0</td><td>null</td><td>null</td><td>922.5596334496767</td><td>10</td><td>922.5596334496767</td><td>10</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>884.5944592908111</td><td>25</td><td>884.5944592908111</td><td>25.0</td><td>null</td><td>null</td><td>884.5944592908111</td><td>25</td><td>884.5944592908111</td><td>25</td><td>null</td><td>null</td><td>null</td><td>null</td><td>4047.191603288681</td><td>75</td><td>1011.7979008221703</td><td>18.75</td><td>117.00593730173313</td><td>12.499999999999998</td><td>886.2905776828845</td><td>0</td><td>1169.1982542099925</td><td>25</td><td>-0.9556889516290736</td><td>-0.6666666666666665</td><td>0.4596043461170481</td><td>-1.1547005383792515</td><td>2420.2538373529997</td><td>10</td><td>1210.1269186764998</td><td>5.0</td><td>4.422487910639596</td><td>7.0710678118654755</td><td>1206.999747485171</td><td>0</td><td>1213.2540898678285</td><td>10</td><td>-1.9999999999999982</td><td>-2.0</td><td>0.0</td><td>0.0</td><td>3176.752015585457</td><td>35</td><td>1058.9173385284855</td><td>11.666666666666666</td><td>66.19860551954564</td><td>12.583057392117915</td><td>982.6294602539184</td><td>0</td><td>1101.229621942101</td><td>25</td><td>-1.4999999999999993</td><td>-1.5000000000000009</td><td>-0.6945114883456114</td><td>0.23906314692954528</td><td>1827.969447590202</td><td>25</td><td>913.984723795101</td><td>12.5</td><td>117.24908569927177</td><td>17.67766952966369</td><td>831.0771002092232</td><td>0</td><td>996.8923473809787</td><td>25</td><td>-2.0</td><td>-2.0</td><td>0.0</td><td>0.0</td><td>3909.098480634181</td><td>60</td><td>977.2746201585453</td><td>15.0</td><td>43.81758685407173</td><td>12.24744871391589</td><td>924.5760523472333</td><td>0</td><td>1017.3549481973807</td><td>25</td><td>-1.6199093756992955</td><td>-1.5925925925925926</td><td>-0.2604085257392011</td><td>-0.3142696805273544</td><td>4022.1198467195895</td><td>45</td><td>1005.5299616798974</td><td>11.25</td><td>62.40856934885263</td><td>10.307764064044152</td><td>945.790289888872</td><td>0</td><td>1081.5787183634952</td><td>25</td><td>-1.550060685136163</td><td>-0.9619377162629759</td><td>0.27193999565353094</td><td>0.4118470835376499</td><td>991.6308410556854</td><td>25</td><td>991.6308410556854</td><td>25.0</td><td>null</td><td>null</td><td>991.6308410556854</td><td>25</td><td>991.6308410556854</td><td>25</td><td>null</td><td>null</td><td>null</td><td>null</td><td>5198.6994081620105</td><td>55</td><td>1039.739881632402</td><td>11.0</td><td>101.89947592262668</td><td>8.944271909999157</td><td>945.790289888872</td><td>0</td><td>1213.2540898678285</td><td>25</td><td>-0.13716504414508046</td><td>-0.4091796875000009</td><td>1.1366228563682361</td><td>0.5507812500000008</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>2922.5440419009756</td><td>35</td><td>974.1813473003252</td><td>11.666666666666666</td><td>47.959002115208484</td><td>12.583057392117915</td><td>922.5596334496767</td><td>0</td><td>1017.3549481973807</td><td>25</td><td>-1.4999999999999998</td><td>-1.5000000000000009</td><td>-0.3135717124003845</td><td>0.23906314692954528</td><td>3869.007006296775</td><td>75</td><td>967.2517515741938</td><td>18.75</td><td>103.62685352356037</td><td>12.499999999999998</td><td>884.5944592908111</td><td>0</td><td>1101.229621942101</td><td>25</td><td>-1.409700219854243</td><td>-0.6666666666666665</td><td>0.4619435984415551</td><td>-1.1547005383792515</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>4131.85115425162</td><td>60</td><td>1032.962788562905</td><td>15.0</td><td>183.8064932843911</td><td>12.24744871391589</td><td>831.0771002092232</td><td>0</td><td>1206.999747485171</td><td>25</td><td>-1.8080670781329553</td><td>-1.5925925925925926</td><td>-0.10548035640930443</td><td>-0.31426968052735427</td><td>1081.5787183634952</td><td>0</td><td>1081.5787183634952</td><td>0.0</td><td>null</td><td>null</td><td>1081.5787183634952</td><td>0</td><td>1081.5787183634952</td><td>0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>3015.2281538810357</td><td>35</td><td>1005.0760512936786</td><td>11.666666666666666</td><td>76.1126726329002</td><td>12.583057392117915</td><td>958.1204230907772</td><td>0</td><td>1092.8929333894375</td><td>25</td><td>-1.4999999999999993</td><td>-1.5000000000000009</td><td>0.7020100516901682</td><td>0.23906314692954528</td></tr>
 </table></div>
 </div>
+</section>
+<section id="correlation-example">
+<h2>correlation example<a class="headerlink" href="#correlation-example" title="Permalink to this heading">#</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
@@ -905,6 +925,9 @@ Number of features: 25
 <tr><td>1</td><td>2022-04-01</td><td>1</td><td>0</td><td>1</td><td>4</td><td>1</td><td>0</td><td>2</td><td>1</td><td>6</td><td>3</td><td>3</td><td>0</td><td>0</td><td>1</td><td>2</td><td>1</td><td>1</td><td>1</td><td>4</td><td>16</td><td>7</td><td>16</td><td>8</td></tr>
 </table></div>
 </div>
+</section>
+<section id="first_observation_features-example">
+<h2>first_observation_features example<a class="headerlink" href="#first_observation_features-example" title="Permalink to this heading">#</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
@@ -954,6 +977,9 @@ Number of features: 4
 <tr><td>0</td><td>2022-05-01</td><td>989.642360404834</td><td>0</td></tr>
 </table></div>
 </div>
+</section>
+<section id="last_observation_features-example">
+<h2>last_observation_features example<a class="headerlink" href="#last_observation_features-example" title="Permalink to this heading">#</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
@@ -1003,6 +1029,9 @@ Number of features: 4
 <tr><td>0</td><td>2022-05-01</td><td>1047.8739332006205</td><td>10</td></tr>
 </table></div>
 </div>
+</section>
+<section id="lags-example">
+<h2>lags example<a class="headerlink" href="#lags-example" title="Permalink to this heading">#</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
@@ -1053,6 +1082,9 @@ Number of features: 72
 <tr><td>0</td><td>2022-05-01</td><td>27898.085780020647</td><td>335</td><td>996.3602064293088</td><td>11.964285714285714</td><td>89.04801902004334</td><td>11.331640863356228</td><td>783.539838218848</td><td>0</td><td>1169.5751292317634</td><td>25</td><td>0.015765997211552918</td><td>-1.7348126758682978</td><td>-0.04146256322646...</td><td>0.14211194159975876</td><td>23073.719219865256</td><td>250</td><td>1003.2051834724024</td><td>10.869565217391305</td><td>91.68364350589783</td><td>11.246431142310668</td><td>724.6474816548626</td><td>0</td><td>1166.5396308621657</td><td>25</td><td>1.930602398031068</td><td>-1.6379455566406262</td><td>-1.00759236996</td><td>0.3177718469055919</td><td>8002.543578036849</td><td>55</td><td>1000.3179472546061</td><td>6.875</td><td>118.5476910585547</td><td>8.838834764831844</td><td>724.6474816548626</td><td>0</td><td>1092.4934907204822</td><td>25</td><td>1.8855027332009806</td><td>0.1335510204081629</td><td>-1.764323227323885</td><td>1.0496613364713396</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr>
 </table></div>
 </div>
+</section>
+<section id="increase_rate-example">
+<h2>increase_rate example<a class="headerlink" href="#increase_rate-example" title="Permalink to this heading">#</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
@@ -1104,6 +1136,7 @@ Number of features: 30
 </table></div>
 </div>
 </section>
+</section>
 
         </article>
       </div>
@@ -1140,8 +1173,37 @@ Number of features: 30
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">How to use</a><ul>
+<li><a class="reference internal" href="#Init-Pyspark">Init Pyspark</a></li>
+<li><a class="reference internal" href="#Import-the-data">Import the data</a></li>
+<li><a class="reference internal" href="#Generate-public">Generate public</a></li>
+<li><a class="reference internal" href="#Generate-Dataset">Generate Dataset</a></li>
+<li><a class="reference internal" href="#numerical_statistics-example">numerical_statistics example</a></li>
+<li><a class="reference internal" href="#numerical_in_categorical_groups-example">numerical_in_categorical_groups example</a></li>
+<li><a class="reference internal" href="#correlation-example">correlation example</a></li>
+<li><a class="reference internal" href="#first_observation_features-example">first_observation_features example</a></li>
+<li><a class="reference internal" href="#last_observation_features-example">last_observation_features example</a></li>
+<li><a class="reference internal" href="#lags-example">lags example</a></li>
+<li><a class="reference internal" href="#increase_rate-example">increase_rate example</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
