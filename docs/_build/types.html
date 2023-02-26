@@ -160,7 +160,7 @@
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Group by based features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html#window-based-features">Window based features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/use_cases.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/use_cases.html">How to use</a></li>
 </ul>
 
 </div>
@@ -195,94 +195,99 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-autofeats.types">
-<span id="types"></span><h1>Types<a class="headerlink" href="#module-autofeats.types" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
+          <section id="types">
+<h1>Types<a class="headerlink" href="#types" title="Permalink to this heading">#</a></h1>
+<p>Base type to use with autofeasts.</p>
+<p>This will init a dataclass with
+all neccessary information to build features with autofeats.
+This class also creates a join between table and public to
+create a time window used in features creation.</p>
+<p>The join works creating a on clause with the id (for example a customer_id)
+and dates columns.</p>
+<ul>
+<li><p>Example:</p>
+<blockquote>
+<div><p>If you have a data_ref equals to <strong>“2022-01-06”</strong> and defines subtract_in_end
+parameter equals to 5 you will select all transactions from <strong>“2022-01-01”</strong> until
+<strong>“2022-01-05”</strong>.</p>
+</div></blockquote>
+</li>
+</ul>
+<span class="target" id="module-autofeats.types"></span><dl class="py class">
 <dt class="sig sig-object py" id="autofeats.types.Dataset">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autofeats.types.</span></span><span class="sig-name descname"><span class="pre">Dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.dataframe.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_key_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_join_key_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_join_date_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numerical_cols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categorical_cols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.dataframe.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_join_key_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_join_date_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtract_in_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtract_in_end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">90</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'day'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/types.html#Dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.types.Dataset" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>table</strong> (<em>DataFrame</em>) – </p></li>
-<li><p><strong>primary_key_col</strong> (<em>str</em>) – </p></li>
-<li><p><strong>table_join_key_col</strong> (<em>str</em>) – </p></li>
-<li><p><strong>table_join_date_col</strong> (<em>str</em>) – </p></li>
-<li><p><strong>numerical_cols</strong> (<em>list</em>) – </p></li>
-<li><p><strong>categorical_cols</strong> (<em>list</em>) – </p></li>
-<li><p><strong>public</strong> (<em>DataFrame</em>) – </p></li>
-<li><p><strong>public_join_key_col</strong> (<em>str</em>) – </p></li>
-<li><p><strong>public_join_date_col</strong> (<em>str</em>) – </p></li>
-<li><p><strong>subtract_in_start</strong> (<em>int</em>) – </p></li>
-<li><p><strong>subtract_in_end</strong> (<em>int</em>) – </p></li>
-<li><p><strong>time_unit</strong> (<em>str</em>) – </p></li>
-</ul>
-</dd>
-</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="autofeats.types.Dataset.categorical_cols">
 <span class="sig-name descname"><span class="pre">categorical_cols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#autofeats.types.Dataset.categorical_cols" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>List of categorical columns in the dataframe</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="autofeats.types.Dataset.numerical_cols">
 <span class="sig-name descname"><span class="pre">numerical_cols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#autofeats.types.Dataset.numerical_cols" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>List of numerical columns in the dataframe</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="autofeats.types.Dataset.primary_key_col">
 <span class="sig-name descname"><span class="pre">primary_key_col</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#autofeats.types.Dataset.primary_key_col" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Primary key of the table</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="autofeats.types.Dataset.public">
 <span class="sig-name descname"><span class="pre">public</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#autofeats.types.Dataset.public" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Public dataframe</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="autofeats.types.Dataset.public_join_date_col">
 <span class="sig-name descname"><span class="pre">public_join_date_col</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#autofeats.types.Dataset.public_join_date_col" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Public date column to use in the join</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="autofeats.types.Dataset.public_join_key_col">
 <span class="sig-name descname"><span class="pre">public_join_key_col</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#autofeats.types.Dataset.public_join_key_col" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="autofeats.types.Dataset.select">
-<span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/types.html#Dataset.select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.types.Dataset.select" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Public ID to use in the join</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="autofeats.types.Dataset.subtract_in_end">
 <span class="sig-name descname"><span class="pre">subtract_in_end</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">90</span></em><a class="headerlink" href="#autofeats.types.Dataset.subtract_in_end" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Time window lenght</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="autofeats.types.Dataset.subtract_in_start">
 <span class="sig-name descname"><span class="pre">subtract_in_start</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#autofeats.types.Dataset.subtract_in_start" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Days before the reference date</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="autofeats.types.Dataset.table">
 <span class="sig-name descname"><span class="pre">table</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#autofeats.types.Dataset.table" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Dataframe to create features</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="autofeats.types.Dataset.table_join_date_col">
 <span class="sig-name descname"><span class="pre">table_join_date_col</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#autofeats.types.Dataset.table_join_date_col" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Date column used to do the join with public to create a time window</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="autofeats.types.Dataset.table_join_key_col">
 <span class="sig-name descname"><span class="pre">table_join_key_col</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#autofeats.types.Dataset.table_join_key_col" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Column used to do the join with public</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="autofeats.types.Dataset.time_unit">
 <span class="sig-name descname"><span class="pre">time_unit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'day'</span></em><a class="headerlink" href="#autofeats.types.Dataset.time_unit" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Unit used to make time window</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -351,7 +356,6 @@
 <li><a class="reference internal" href="#autofeats.types.Dataset.public"><code class="docutils literal notranslate"><span class="pre">Dataset.public</span></code></a></li>
 <li><a class="reference internal" href="#autofeats.types.Dataset.public_join_date_col"><code class="docutils literal notranslate"><span class="pre">Dataset.public_join_date_col</span></code></a></li>
 <li><a class="reference internal" href="#autofeats.types.Dataset.public_join_key_col"><code class="docutils literal notranslate"><span class="pre">Dataset.public_join_key_col</span></code></a></li>
-<li><a class="reference internal" href="#autofeats.types.Dataset.select"><code class="docutils literal notranslate"><span class="pre">Dataset.select()</span></code></a></li>
 <li><a class="reference internal" href="#autofeats.types.Dataset.subtract_in_end"><code class="docutils literal notranslate"><span class="pre">Dataset.subtract_in_end</span></code></a></li>
 <li><a class="reference internal" href="#autofeats.types.Dataset.subtract_in_start"><code class="docutils literal notranslate"><span class="pre">Dataset.subtract_in_start</span></code></a></li>
 <li><a class="reference internal" href="#autofeats.types.Dataset.table"><code class="docutils literal notranslate"><span class="pre">Dataset.table</span></code></a></li>

@@ -29,7 +29,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]  # , "**.ipynb_checkpoin
 html_theme = "furo"
 html_static_path = ["_static"]
 
-autodoc_typehints = "description"
+# autodoc_typehints = "description"
 
 # Don't show class signature with the class' name.
 # autodoc_class_signature = "separated"
