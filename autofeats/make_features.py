@@ -42,20 +42,56 @@ def run(df: Dataset, suites: list, options: dict) -> Optional[DataFrame]:
 
     Each suite will make one type of features:
 
-    - numerical_statistics: numerical statistics (mean, kurtosis, etc) calculated for each numerical column;
-    - numerical_in_categorical_groups: numerical statistics (mean, kurtosis, etc) calculated for each numerical column calculated inside each category
-    - correlation: correlation between numerical features
-    - categorical_statistics:
-    - first_observation_features:
-    - last_observation_features:
-    - lags:
-    - increase_rate:
+    - **numerical_statistics**: numerical statistics (mean, kurtosis, etc) calculated for each numerical column;
+    - **numerical_in_categorical_groups**: numerical statistics (mean, kurtosis, etc) calculated for each numerical column calculated inside each category
+    - **correlation**: correlation between numerical features
+    - **categorical_statistics**: count and count distinct applied to the categorical columns
+    - **first_observation_features**: value of the first observation (in the time window defined)
+    - **last_observation_features**: value of the last observation (in the time window defined)
+    - **lags**: lag features
+    - **increase_rate**: increase rate between features
 
-
+    The lags and increase_rate suites will be applied to the features table generated after
+    the use of one or more suites.
 
     Example::
 
-        features: DataFrame = make_features.run(
+        import pyspark.sql.functions as F
+        from examples.data import make_transactions
+        from pyspark.sql import DataFrame, SparkSession
+
+        from autofeats import make_features
+        from autofeats.types import Dataset
+
+        spark = (
+            SparkSession.builder.master("local[*]")
+            .config("spark.executor.memory", "6g")
+            .config("spark.driver.memory", "6g")
+            .getOrCreate()
+        )
+
+        transactions = spark.createDataFrame(make_transactions())
+
+        public = transactions.groupby(F.col("consumer_id").alias("consumer_id_ref")).agg(
+            F.max("paymnent_date").alias("date_ref")
+        )
+
+        df = Dataset(
+            table=transactions,
+            primary_key_col="transaction_id",
+            table_join_key_col="consumer_id",
+            table_join_date_col="paymnent_date",
+            numerical_cols=["paid_value", "discount"],
+            categorical_cols=["product_type", "buy_type"],
+            public=public,
+            public_join_key_col="consumer_id_ref",
+            public_join_date_col="date_ref",
+            subtract_in_start=0,
+            subtract_in_end=90,
+            time_unit="day"
+        )
+
+        features = make_features.run(
             df=df,
             suites=[
                 "numerical_statistics",

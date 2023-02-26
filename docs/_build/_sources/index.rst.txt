@@ -19,7 +19,7 @@ Welcome to autofeats's documentation!
    features
    --------
    
-   ./examples/use_cases
+   /examples/use_cases
 
 Indices and tables
 ==================

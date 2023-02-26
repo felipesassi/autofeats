@@ -13,6 +13,12 @@ def last_observation_value(df: Dataset) -> DataFrame:
     the dataset. The columns selected will be only the numerical
     ones.
 
+    Example::
+
+        w = Window().partitionBy("customer_id").orderBy(F.col("buy_date").desc())
+
+        df = df.withColumn("rn", F.row_number().over(w)).filter(F.col("rn") == 1).drop("rn")
+
     Args:
         df (Dataset): Dataset initialized with necessary information
 
@@ -43,6 +49,13 @@ def first_observation_value(df: Dataset) -> DataFrame:
     This function will return the first row (observation) in
     the dataset. The columns selected will be only the numerical
     ones.
+
+    Example::
+
+        w = Window().partitionBy("customer_id").orderBy("buy_date")
+
+        df = df.withColumn("rn", F.row_number().over(w)).filter(F.col("rn") == 1).drop("rn")
+
 
     Args:
         df (Dataset): Dataset initialized with necessary information
@@ -77,6 +90,11 @@ def rate_between_actual_and_past_value(
     This function generates the increase rate comparing the feature value
     in a date X with the feature value in a date X - 1.
 
+    Example::
+
+        w = Window().partitionBy("customer_id").orderBy("date_ref")
+        df = df.withColumn("increase_rate_mean___paid_value, (F.lag("paid_value").over(w) - F.col("paid_value"))/F.col("paid_value"))
+
     Args:
         df (Dataset): Dataset initialized with necessary information
         features (DataFrame): Dataframe with features
@@ -102,6 +120,11 @@ def lags(df: Dataset, features: DataFrame, *args, **kwargs) -> DataFrame:
     """
     This function should be applied to the generated features.
     This function applies a lag function to the features table.
+
+    Example::
+
+        w = Window().partitionBy("customer_id").orderBy("date_ref")
+        df = df.withColumn("lag=1_mean___paid_value", F.lag("mean___paid_value").over(w))
 
     Args:
         df (Dataset): Dataset initialized with necessary information

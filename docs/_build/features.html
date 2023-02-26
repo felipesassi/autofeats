@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Example" href="examples/use_cases.html" /><link rel="prev" title="Types" href="types.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="How to use" href="examples/use_cases.html" /><link rel="prev" title="Types" href="types.html" />
 
     <!-- Generated with Sphinx 6.1.3 and Furo 2022.12.07 -->
         <title>Group by based features - autofeats documentation</title>
@@ -160,7 +160,7 @@
 <li class="toctree-l1"><a class="reference internal" href="types.html">Types</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Group by based features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#window-based-features">Window based features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/use_cases.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/use_cases.html">How to use</a></li>
 </ul>
 
 </div>
@@ -221,6 +221,10 @@ and count_categorical_values to the dataset.</p>
 <dd><p>This function generates the expressions used to calculate the
 correlation between numerical features. All numerical features will be
 combinated into groups of two.</p>
+<p>Example of operation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x_1&quot;</span><span class="p">),</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x_2&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;corr_between___x_1_x_2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
@@ -239,6 +243,10 @@ combinated into groups of two.</p>
 <span class="sig-prename descclassname"><span class="pre">autofeats.features.group_by.</span></span><span class="sig-name descname"><span class="pre">count_categorical_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/features/group_by.html#count_categorical_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.features.group_by.count_categorical_values" title="Permalink to this definition">#</a></dt>
 <dd><p>This function will apply count and countDistinct to
 the categorical columns as a whole.</p>
+<p>Example of operation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;product_type&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
@@ -257,6 +265,10 @@ the categorical columns as a whole.</p>
 <span class="sig-prename descclassname"><span class="pre">autofeats.features.group_by.</span></span><span class="sig-name descname"><span class="pre">count_occurences_of_each_category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/features/group_by.html#count_occurences_of_each_category"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.features.group_by.count_occurences_of_each_category" title="Permalink to this definition">#</a></dt>
 <dd><p>This function counts the occorurences of each category inside a
 categorical column.</p>
+<p>Example of operation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;product_type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;product_type&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
@@ -276,6 +288,10 @@ categorical column.</p>
 <dd><p>This function extracts categorical data from the categorical columns. This
 data is transformed in a dictionary with the column name as key and column
 values as values.</p>
+<p>Example of return:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;product_type&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]}</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
@@ -296,6 +312,10 @@ values as values.</p>
 numerical columns in the dataset. The statistics will be
 calculated inside a time window, defined in the dataset
 instantiation.</p>
+<p>Example of operation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;paid_value&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;mean___paid_value&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
@@ -314,6 +334,10 @@ instantiation.</p>
 <span class="sig-prename descclassname"><span class="pre">autofeats.features.group_by.</span></span><span class="sig-name descname"><span class="pre">statistics_of_numerical_data_in_categorical_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/features/group_by.html#statistics_of_numerical_data_in_categorical_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.features.group_by.statistics_of_numerical_data_in_categorical_groups" title="Permalink to this definition">#</a></dt>
 <dd><p>This function will calculate numerical statistics using a
 pivoted version of the dataset.</p>
+<p>Example of operation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;product_type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;paid_value&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
@@ -336,6 +360,12 @@ pivoted version of the dataset.</p>
 <dd><p>This function will return the first row (observation) in
 the dataset. The columns selected will be only the numerical
 ones.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">()</span><span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="s2">&quot;customer_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;buy_date&quot;</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;rn&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">row_number</span><span class="p">()</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">w</span><span class="p">))</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;rn&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;rn&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
@@ -354,6 +384,11 @@ ones.</p>
 <span class="sig-prename descclassname"><span class="pre">autofeats.features.window.</span></span><span class="sig-name descname"><span class="pre">lags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/features/window.html#lags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.features.window.lags" title="Permalink to this definition">#</a></dt>
 <dd><p>This function should be applied to the generated features.
 This function applies a lag function to the features table.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">()</span><span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="s2">&quot;customer_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;date_ref&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;lag=1_mean___paid_value&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">lag</span><span class="p">(</span><span class="s2">&quot;mean___paid_value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -376,6 +411,12 @@ This function applies a lag function to the features table.</p>
 <dd><p>This function will return the last row (observation) in
 the dataset. The columns selected will be only the numerical
 ones.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">()</span><span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="s2">&quot;customer_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;buy_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">desc</span><span class="p">())</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;rn&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">row_number</span><span class="p">()</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">w</span><span class="p">))</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;rn&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;rn&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
@@ -395,6 +436,11 @@ ones.</p>
 <dd><p>This function should be applied to the generated features.
 This function generates the increase rate comparing the feature value
 in a date X with the feature value in a date X - 1.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">()</span><span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="s2">&quot;customer_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;date_ref&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;increase_rate_mean___paid_value, (F.lag(&quot;</span><span class="n">paid_value</span><span class="s2">&quot;).over(w) - F.col(&quot;</span><span class="n">paid_value</span><span class="s2">&quot;))/F.col(&quot;</span><span class="n">paid_value</span><span class="s2">&quot;))</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -423,7 +469,7 @@ in a date X with the feature value in a date X - 1.</p>
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Example</div>
+                <div class="title">How to use</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>

@@ -13,6 +13,10 @@ def get_categories_from_categorical_data(df: Dataset) -> List[Dict[str, Any]]:
     data is transformed in a dictionary with the column name as key and column
     values as values.
 
+    Example of return::
+
+        {"product_type": ["A", "B", "C"]}
+
     Args:
         df (Dataset): Dataset initialized with necessary information
 
@@ -30,6 +34,10 @@ def correlation_between_features(df: Dataset) -> List[Column]:
     This function generates the expressions used to calculate the
     correlation between numerical features. All numerical features will be
     combinated into groups of two.
+
+    Example of operation::
+
+        F.corr(F.col("x_1"), F.col("x_2")).alias("corr_between___x_1_x_2")
 
     Args:
         df (Dataset): Dataset initialized with necessary information
@@ -50,6 +58,10 @@ def numerical_statistics(df: Dataset) -> List[Column]:
     numerical columns in the dataset. The statistics will be
     calculated inside a time window, defined in the dataset
     instantiation.
+
+    Example of operation::
+
+        F.mean(F.col("paid_value")).alias("mean___paid_value")
 
     Args:
         df (Dataset): Dataset initialized with necessary information
@@ -82,6 +94,10 @@ def count_occurences_of_each_category(df: Dataset) -> List[Column]:
     This function counts the occorurences of each category inside a
     categorical column.
 
+    Example of operation::
+
+        F.count(F.when(F.col("product_type") == "A", F.col("product_type")))
+
     Args:
         df (Dataset): Dataset initialized with necessary information
 
@@ -107,6 +123,10 @@ def count_categorical_values(df: Dataset) -> List[Column]:
     """
     This function will apply count and countDistinct to
     the categorical columns as a whole.
+
+    Example of operation::
+
+        F.count(F.col("product_type"))
 
     Args:
         df (Dataset): Dataset initialized with necessary information
@@ -147,6 +167,10 @@ def statistics_of_numerical_data_in_categorical_groups(
     """
     This function will calculate numerical statistics using a
     pivoted version of the dataset.
+
+    Example of operation::
+
+        F.mean(F.when(F.col("product_type") == "A", F.col("paid_value")))
 
     Args:
         df (Dataset): Dataset initialized with necessary information
