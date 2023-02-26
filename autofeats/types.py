@@ -7,19 +7,31 @@ from pyspark.sql.dataframe import DataFrame
 @dataclass
 class Dataset:
     table: DataFrame
+    """Dataframe to create features"""
     primary_key_col: str
+    """Primary key of the table"""
     table_join_key_col: str
+    """Column used to do the join with public"""
     table_join_date_col: str
+    """Date column used to do the join with public to create a time window"""
     numerical_cols: list
+    """List of numerical columns in the dataframe"""
     categorical_cols: list
+    """List of categorical columns in the dataframe"""
     public: DataFrame
+    """Public dataframe"""
     public_join_key_col: str
+    """Public ID to use in the join"""
     public_join_date_col: str
+    """Public date column to use in the join"""
     subtract_in_start: int = 0
+    """Days before the reference date"""
     subtract_in_end: int = 90
+    """Time window lenght"""
     time_unit: str = "day"
+    """Unit used to make time window"""
 
-    def select(self):
+    def __select(self):
         self.table = self.table.select(
             self.primary_key_col,
             self.table_join_key_col,
@@ -29,7 +41,7 @@ class Dataset:
         )
 
     def __post_init__(self) -> None:
-        self.select()
+        self.__select()
 
         cnd_1 = self.public[self.public_join_key_col] == self.table[self.table_join_key_col]
 
