@@ -45,6 +45,13 @@ def run(df: Dataset, suites: list, options: dict) -> Optional[DataFrame]:
     - numerical_statistics: numerical statistics (mean, kurtosis, etc) calculated for each numerical column;
     - numerical_in_categorical_groups: numerical statistics (mean, kurtosis, etc) calculated for each numerical column calculated inside each category
     - correlation: correlation between numerical features
+    - categorical_statistics:
+    - first_observation_features:
+    - last_observation_features:
+    - lags:
+    - increase_rate:
+
+
 
     Example::
 

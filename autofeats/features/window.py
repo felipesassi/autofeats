@@ -8,6 +8,17 @@ from autofeats.types import Dataset
 
 
 def last_observation_value(df: Dataset) -> DataFrame:
+    """
+    This function will return the last row (observation) in
+    the dataset. The columns selected will be only the numerical
+    ones.
+
+    Args:
+        df (Dataset): Dataset initialized with necessary information
+
+    Returns:
+        DataFrame: Dataframe with the features
+    """
     w = (
         Window()
         .partitionBy(df.public_join_key_col, df.public_join_date_col)
@@ -28,6 +39,17 @@ def last_observation_value(df: Dataset) -> DataFrame:
 
 
 def first_observation_value(df: Dataset) -> DataFrame:
+    """
+    This function will return the first row (observation) in
+    the dataset. The columns selected will be only the numerical
+    ones.
+
+    Args:
+        df (Dataset): Dataset initialized with necessary information
+
+    Returns:
+        DataFrame: Dataframe with the features
+    """
     w = (
         Window()
         .partitionBy(df.public_join_key_col, df.public_join_date_col)
@@ -50,6 +72,18 @@ def first_observation_value(df: Dataset) -> DataFrame:
 def rate_between_actual_and_past_value(
     df: Dataset, features: DataFrame, *args, **kwargs
 ) -> DataFrame:
+    """
+    This function should be applied to the generated features.
+    This function generates the increase rate comparing the feature value
+    in a date X with the feature value in a date X - 1.
+
+    Args:
+        df (Dataset): Dataset initialized with necessary information
+        features (DataFrame): Dataframe with features
+
+    Returns:
+        DataFrame: Dataframe with the features
+    """
     w = Window().partitionBy(df.public_join_key_col).orderBy(df.public_join_date_col)
 
     numerical_cols = features.drop(df.public_join_key_col, df.public_join_date_col).columns
@@ -65,6 +99,17 @@ def rate_between_actual_and_past_value(
 
 
 def lags(df: Dataset, features: DataFrame, *args, **kwargs) -> DataFrame:
+    """
+    This function should be applied to the generated features.
+    This function applies a lag function to the features table.
+
+    Args:
+        df (Dataset): Dataset initialized with necessary information
+        features (DataFrame): Dataframe with features
+
+    Returns:
+        DataFrame: Dataframe with the features
+    """
     w = Window().partitionBy(df.public_join_key_col).orderBy(df.public_join_date_col)
 
     n_lags = kwargs.get("options", {"n_lags": [1]})["n_lags"]

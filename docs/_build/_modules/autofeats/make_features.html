@@ -155,10 +155,10 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../autofeats.html">make_features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../features.html">features.group_by</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../features.html#autofeats-features-window">autofeats.features.window</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../types.html">autofeats.types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autofeats.html">Make features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../types.html">Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features.html">Group by based features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features.html#window-based-features">Window based features</a></li>
 </ul>
 
 </div>
@@ -232,7 +232,7 @@
 
 <div class="viewcode-block" id="run"><a class="viewcode-back" href="../../autofeats.html#autofeats.make_features.run">[docs]</a><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">suites</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This function will run the feature creation process based on the </span>
+<span class="sd">    This function will run the feature creation process based on the</span>
 <span class="sd">    input dataframe, selected features and users&#39;options.</span>
 
 <span class="sd">    Each suite will make one type of features:</span>
@@ -240,6 +240,13 @@
 <span class="sd">    - numerical_statistics: numerical statistics (mean, kurtosis, etc) calculated for each numerical column;</span>
 <span class="sd">    - numerical_in_categorical_groups: numerical statistics (mean, kurtosis, etc) calculated for each numerical column calculated inside each category</span>
 <span class="sd">    - correlation: correlation between numerical features</span>
+<span class="sd">    - categorical_statistics:</span>
+<span class="sd">    - first_observation_features:</span>
+<span class="sd">    - last_observation_features:</span>
+<span class="sd">    - lags:</span>
+<span class="sd">    - increase_rate:</span>
+
+<span class="sd">    </span>
 
 <span class="sd">    Example::</span>
 

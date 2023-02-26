@@ -45,6 +45,19 @@ def correlation_between_features(df: Dataset) -> List[Column]:
 
 
 def numerical_statistics(df: Dataset) -> List[Column]:
+    """
+    This function generates numerical statisticst about the
+    numerical columns in the dataset. The statistics will be
+    calculated inside a time window, defined in the dataset
+    instantiation.
+
+    Args:
+        df (Dataset): Dataset initialized with necessary information
+
+    Returns:
+        List[Column]: List with the operations to apply in the dataframe
+    """
+
     functions: List[Callable[[Column], Column]] = [
         F.sum,
         F.mean,
@@ -65,14 +78,17 @@ def numerical_statistics(df: Dataset) -> List[Column]:
 
 
 def count_occurences_of_each_category(df: Dataset) -> List[Column]:
-    """testes
+    """
+    This function counts the occorurences of each category inside a
+    categorical column.
 
     Args:
-        df (Dataset): _description_
+        df (Dataset): Dataset initialized with necessary information
 
     Returns:
-        List[Column]: test
+        List[Column]: List with the operations to apply in the dataframe
     """
+
     functions: List[Callable[[Column], Column]] = [F.count]
 
     categories_to_analyze = get_categories_from_categorical_data(df)
@@ -88,6 +104,16 @@ def count_occurences_of_each_category(df: Dataset) -> List[Column]:
 
 
 def count_categorical_values(df: Dataset) -> List[Column]:
+    """
+    This function will apply count and countDistinct to
+    the categorical columns as a whole.
+
+    Args:
+        df (Dataset): Dataset initialized with necessary information
+
+    Returns:
+        List[Column]: List with the operations to apply in the dataframe
+    """
     functions: List[Callable[[Column], Column]] = [F.count, F.countDistinct]
 
     categories_to_analyze = get_categories_from_categorical_data(df)
@@ -102,12 +128,32 @@ def count_categorical_values(df: Dataset) -> List[Column]:
 
 
 def categorical_statistics(df: Dataset) -> List[Column]:
+    """
+    This function applies count_occurences_of_each_category
+    and count_categorical_values to the dataset.
+
+    Args:
+        df (Dataset): Dataset initialized with necessary information
+
+    Returns:
+        List[Column]: List with the operations to apply in the dataframe
+    """
     return count_occurences_of_each_category(df) + count_categorical_values(df)
 
 
 def statistics_of_numerical_data_in_categorical_groups(
     df: Dataset,
 ) -> List[Column]:
+    """
+    This function will calculate numerical statistics using a
+    pivoted version of the dataset.
+
+    Args:
+        df (Dataset): Dataset initialized with necessary information
+
+    Returns:
+        List[Column]: List with the operations to apply in the dataframe
+    """
     functions: List[Callable[[Column], Column]] = [
         F.sum,
         F.mean,

@@ -1,7 +1,8 @@
-autofeats
-=========
+features
+========
 
 .. toctree::
    :maxdepth: 4
 
-   autofeats
+   group_by
+   window

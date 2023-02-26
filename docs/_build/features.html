@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="autofeats.types" href="types.html" /><link rel="prev" title="make_features" href="autofeats.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Example" href="examples/use_cases.html" /><link rel="prev" title="Types" href="types.html" />
 
     <!-- Generated with Sphinx 6.1.3 and Furo 2022.12.07 -->
-        <title>features.group_by - autofeats documentation</title>
+        <title>Group by based features - autofeats documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -156,10 +156,11 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="autofeats.html">make_features</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">features.group_by</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#autofeats-features-window">autofeats.features.window</a></li>
-<li class="toctree-l1"><a class="reference internal" href="types.html">autofeats.types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autofeats.html">Make features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Group by based features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#window-based-features">Window based features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/use_cases.html">Example</a></li>
 </ul>
 
 </div>
@@ -194,17 +195,22 @@
           </label>
         </div>
         <article role="main">
-          <section id="features-group-by">
-<h1>features.group_by<a class="headerlink" href="#features-group-by" title="Permalink to this heading">#</a></h1>
+          <section id="group-by-based-features">
+<h1>Group by based features<a class="headerlink" href="#group-by-based-features" title="Permalink to this heading">#</a></h1>
 <span class="target" id="module-autofeats.features.group_by"></span><dl class="py function">
 <dt class="sig sig-object py" id="autofeats.features.group_by.categorical_statistics">
 <span class="sig-prename descclassname"><span class="pre">autofeats.features.group_by.</span></span><span class="sig-name descname"><span class="pre">categorical_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/features/group_by.html#categorical_statistics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.features.group_by.categorical_statistics" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>This function applies count_occurences_of_each_category
+and count_categorical_values to the dataset.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – </p>
+<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>List</em>[<em>Column</em>]</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List with the operations to apply in the dataframe</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Column]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -231,12 +237,17 @@ combinated into groups of two.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="autofeats.features.group_by.count_categorical_values">
 <span class="sig-prename descclassname"><span class="pre">autofeats.features.group_by.</span></span><span class="sig-name descname"><span class="pre">count_categorical_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/features/group_by.html#count_categorical_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.features.group_by.count_categorical_values" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>This function will apply count and countDistinct to
+the categorical columns as a whole.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – </p>
+<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>List</em>[<em>Column</em>]</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List with the operations to apply in the dataframe</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Column]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -244,13 +255,14 @@ combinated into groups of two.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="autofeats.features.group_by.count_occurences_of_each_category">
 <span class="sig-prename descclassname"><span class="pre">autofeats.features.group_by.</span></span><span class="sig-name descname"><span class="pre">count_occurences_of_each_category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/features/group_by.html#count_occurences_of_each_category"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.features.group_by.count_occurences_of_each_category" title="Permalink to this definition">#</a></dt>
-<dd><p>testes</p>
+<dd><p>This function counts the occorurences of each category inside a
+categorical column.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – _description_</p>
+<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>test</p>
+<dd class="field-even"><p>List with the operations to apply in the dataframe</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List[Column]</p>
@@ -280,12 +292,19 @@ values as values.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="autofeats.features.group_by.numerical_statistics">
 <span class="sig-prename descclassname"><span class="pre">autofeats.features.group_by.</span></span><span class="sig-name descname"><span class="pre">numerical_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/features/group_by.html#numerical_statistics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.features.group_by.numerical_statistics" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>This function generates numerical statisticst about the
+numerical columns in the dataset. The statistics will be
+calculated inside a time window, defined in the dataset
+instantiation.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – </p>
+<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>List</em>[<em>Column</em>]</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List with the operations to apply in the dataframe</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Column]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -293,28 +312,39 @@ values as values.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="autofeats.features.group_by.statistics_of_numerical_data_in_categorical_groups">
 <span class="sig-prename descclassname"><span class="pre">autofeats.features.group_by.</span></span><span class="sig-name descname"><span class="pre">statistics_of_numerical_data_in_categorical_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/features/group_by.html#statistics_of_numerical_data_in_categorical_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.features.group_by.statistics_of_numerical_data_in_categorical_groups" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>This function will calculate numerical statistics using a
+pivoted version of the dataset.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – </p>
+<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>List</em>[<em>Column</em>]</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List with the operations to apply in the dataframe</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Column]</p>
 </dd>
 </dl>
 </dd></dl>
 
 </section>
-<section id="autofeats-features-window">
-<h1>autofeats.features.window<a class="headerlink" href="#autofeats-features-window" title="Permalink to this heading">#</a></h1>
+<section id="window-based-features">
+<h1>Window based features<a class="headerlink" href="#window-based-features" title="Permalink to this heading">#</a></h1>
 <span class="target" id="module-autofeats.features.window"></span><dl class="py function">
 <dt class="sig sig-object py" id="autofeats.features.window.first_observation_value">
 <span class="sig-prename descclassname"><span class="pre">autofeats.features.window.</span></span><span class="sig-name descname"><span class="pre">first_observation_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/features/window.html#first_observation_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.features.window.first_observation_value" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>This function will return the first row (observation) in
+the dataset. The columns selected will be only the numerical
+ones.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – </p>
+<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>DataFrame</em></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataframe with the features</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame</p>
 </dd>
 </dl>
 </dd></dl>
@@ -322,15 +352,20 @@ values as values.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="autofeats.features.window.lags">
 <span class="sig-prename descclassname"><span class="pre">autofeats.features.window.</span></span><span class="sig-name descname"><span class="pre">lags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/features/window.html#lags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.features.window.lags" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>This function should be applied to the generated features.
+This function applies a lag function to the features table.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – </p></li>
-<li><p><strong>features</strong> (<em>DataFrame</em>) – </p></li>
+<li><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p></li>
+<li><p><strong>features</strong> (<em>DataFrame</em>) – Dataframe with features</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>DataFrame</em></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataframe with the features</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame</p>
 </dd>
 </dl>
 </dd></dl>
@@ -338,12 +373,18 @@ values as values.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="autofeats.features.window.last_observation_value">
 <span class="sig-prename descclassname"><span class="pre">autofeats.features.window.</span></span><span class="sig-name descname"><span class="pre">last_observation_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/features/window.html#last_observation_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.features.window.last_observation_value" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>This function will return the last row (observation) in
+the dataset. The columns selected will be only the numerical
+ones.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – </p>
+<dd class="field-odd"><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>DataFrame</em></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataframe with the features</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame</p>
 </dd>
 </dl>
 </dd></dl>
@@ -351,22 +392,25 @@ values as values.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="autofeats.features.window.rate_between_actual_and_past_value">
 <span class="sig-prename descclassname"><span class="pre">autofeats.features.window.</span></span><span class="sig-name descname"><span class="pre">rate_between_actual_and_past_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autofeats/features/window.html#rate_between_actual_and_past_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autofeats.features.window.rate_between_actual_and_past_value" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>This function should be applied to the generated features.
+This function generates the increase rate comparing the feature value
+in a date X with the feature value in a date X - 1.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – </p></li>
-<li><p><strong>features</strong> (<em>DataFrame</em>) – </p></li>
+<li><p><strong>df</strong> (<a class="reference internal" href="types.html#autofeats.types.Dataset" title="autofeats.types.Dataset"><em>Dataset</em></a>) – Dataset initialized with necessary information</p></li>
+<li><p><strong>features</strong> (<em>DataFrame</em>) – Dataframe with features</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>DataFrame</em></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataframe with the features</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame</p>
 </dd>
 </dl>
 </dd></dl>
 
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading">#</a></h2>
-</section>
 </section>
 
         </article>
@@ -374,23 +418,23 @@ values as values.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="types.html">
+          <a class="next-page" href="examples/use_cases.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">autofeats.types</div>
+                <div class="title">Example</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="autofeats.html">
+          <a class="prev-page" href="types.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">make_features</div>
+                <div class="title">Types</div>
                 
               </div>
             </a>
@@ -424,7 +468,7 @@ values as values.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">features.group_by</a><ul>
+<li><a class="reference internal" href="#">Group by based features</a><ul>
 <li><a class="reference internal" href="#autofeats.features.group_by.categorical_statistics"><code class="docutils literal notranslate"><span class="pre">categorical_statistics()</span></code></a></li>
 <li><a class="reference internal" href="#autofeats.features.group_by.correlation_between_features"><code class="docutils literal notranslate"><span class="pre">correlation_between_features()</span></code></a></li>
 <li><a class="reference internal" href="#autofeats.features.group_by.count_categorical_values"><code class="docutils literal notranslate"><span class="pre">count_categorical_values()</span></code></a></li>
@@ -434,12 +478,11 @@ values as values.</p>
 <li><a class="reference internal" href="#autofeats.features.group_by.statistics_of_numerical_data_in_categorical_groups"><code class="docutils literal notranslate"><span class="pre">statistics_of_numerical_data_in_categorical_groups()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#autofeats-features-window">autofeats.features.window</a><ul>
+<li><a class="reference internal" href="#window-based-features">Window based features</a><ul>
 <li><a class="reference internal" href="#autofeats.features.window.first_observation_value"><code class="docutils literal notranslate"><span class="pre">first_observation_value()</span></code></a></li>
 <li><a class="reference internal" href="#autofeats.features.window.lags"><code class="docutils literal notranslate"><span class="pre">lags()</span></code></a></li>
 <li><a class="reference internal" href="#autofeats.features.window.last_observation_value"><code class="docutils literal notranslate"><span class="pre">last_observation_value()</span></code></a></li>
 <li><a class="reference internal" href="#autofeats.features.window.rate_between_actual_and_past_value"><code class="docutils literal notranslate"><span class="pre">rate_between_actual_and_past_value()</span></code></a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -455,5 +498,6 @@ values as values.</p>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/scripts/furo.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     </body>
 </html>

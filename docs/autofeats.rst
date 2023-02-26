@@ -1,7 +1,7 @@
 .. autofeats package
 .. =================
 
-make\_features
+Make features
 -------------------------------
 
 .. automodule:: autofeats.make_features

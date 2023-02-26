@@ -1,4 +1,4 @@
-features.group_by
+Group by based features
 ================
 
 .. automodule:: autofeats.features.group_by
@@ -6,19 +6,10 @@ features.group_by
    :undoc-members:
    :show-inheritance:
 
-autofeats.features.window
+Window based features
 ================
 
 .. automodule:: autofeats.features.window
    :members:
    :undoc-members:
    :show-inheritance:
-
-
-Module contents
----------------
-
-.. .. automodule:: autofeats.features.group_by
-..    :members:
-..    :undoc-members:
-..    :show-inheritance:

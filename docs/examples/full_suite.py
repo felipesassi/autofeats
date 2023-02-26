@@ -1,9 +1,9 @@
 import pyspark.sql.functions as F
+from examples.data import make_transactions
 from pyspark.sql import DataFrame, SparkSession
 
 from autofeats import make_features
 from autofeats.types import Dataset
-from examples.data import make_transactions
 
 spark = (
     SparkSession.builder.master("local[*]")

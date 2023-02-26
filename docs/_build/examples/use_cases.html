@@ -1,0 +1,1157 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="Group by based features" href="../features.html" />
+
+    <!-- Generated with Sphinx 6.1.3 and Furo 2022.12.07 -->
+        <title>Example - autofeats documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">autofeats  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">autofeats  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../autofeats.html">Make features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../types.html">Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Group by based features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html#window-based-features">Window based features</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Example</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars and line breaks on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+    white-space: pre;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<section id="Example">
+<h1>Example<a class="headerlink" href="#Example" title="Permalink to this heading">#</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyspark.sql.functions</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spark</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;local[*]&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.executor.memory&quot;</span><span class="p">,</span> <span class="s2">&quot;6g&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.driver.memory&quot;</span><span class="p">,</span> <span class="s2">&quot;6g&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">spark</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.sql.repl.eagerEval.enabled&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Setting default log level to &#34;WARN&#34;.
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+23/02/19 17:14:55 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">examples.make_data</span> <span class="kn">import</span> <span class="n">make_transactions</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_transactions</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>transaction_id</th>
+      <th>consumer_id</th>
+      <th>paid_value</th>
+      <th>discount</th>
+      <th>product_type</th>
+      <th>buy_type</th>
+      <th>paymnent_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>29</td>
+      <td>1021.731939</td>
+      <td>10</td>
+      <td>h</td>
+      <td>f_4</td>
+      <td>2022-01-01 00:00:00.000000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>98</td>
+      <td>978.323923</td>
+      <td>10</td>
+      <td>c</td>
+      <td>f_7</td>
+      <td>2022-01-01 00:52:33.915391539</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>98</td>
+      <td>1017.947599</td>
+      <td>0</td>
+      <td>d</td>
+      <td>f_8</td>
+      <td>2022-01-01 01:45:07.830783078</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>38</td>
+      <td>1175.278194</td>
+      <td>25</td>
+      <td>a</td>
+      <td>f_2</td>
+      <td>2022-01-01 02:37:41.746174617</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>15</td>
+      <td>853.543907</td>
+      <td>10</td>
+      <td>a</td>
+      <td>f_1</td>
+      <td>2022-01-01 03:30:15.661566156</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">make_transactions</span><span class="p">())</span>
+
+<span class="n">public</span> <span class="o">=</span> <span class="n">transactions</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;consumer_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;consumer_id_ref&quot;</span><span class="p">),</span> <span class="n">F</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">date_trunc</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="s2">&quot;paymnent_date&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;date_ref&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">autofeat.types</span> <span class="kn">import</span> <span class="n">Dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="n">transactions</span><span class="p">,</span>
+    <span class="n">primary_key_col</span><span class="o">=</span><span class="s2">&quot;transaction_id&quot;</span><span class="p">,</span>
+    <span class="n">table_join_key_col</span><span class="o">=</span><span class="s2">&quot;consumer_id&quot;</span><span class="p">,</span>
+    <span class="n">table_join_date_col</span><span class="o">=</span><span class="s2">&quot;paymnent_date&quot;</span><span class="p">,</span>
+    <span class="n">numerical_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;paid_value&quot;</span><span class="p">,</span> <span class="s2">&quot;discount&quot;</span><span class="p">],</span>
+    <span class="n">categorical_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;product_type&quot;</span><span class="p">,</span> <span class="s2">&quot;buy_type&quot;</span><span class="p">],</span>
+    <span class="n">public</span><span class="o">=</span><span class="n">public</span><span class="p">,</span>
+    <span class="n">public_join_key_col</span><span class="o">=</span><span class="s2">&quot;consumer_id_ref&quot;</span><span class="p">,</span>
+    <span class="n">public_join_date_col</span><span class="o">=</span><span class="s2">&quot;date_ref&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">autofeat</span> <span class="kn">import</span> <span class="n">make_features</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">make_features</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">suites</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;numerical_statistics&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{},</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Features created: </span><span class="si">{</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of features: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Features created: [&#39;consumer_id_ref&#39;, &#39;date_ref&#39;, &#39;sum___paid_value&#39;, &#39;sum___discount&#39;, &#39;mean___paid_value&#39;, &#39;mean___discount&#39;, &#39;stddev___paid_value&#39;, &#39;stddev___discount&#39;, &#39;min___paid_value&#39;, &#39;min___discount&#39;, &#39;max___paid_value&#39;, &#39;max___discount&#39;, &#39;kurtosis___paid_value&#39;, &#39;kurtosis___discount&#39;, &#39;skewness___paid_value&#39;, &#39;skewness___discount&#39;]
+Number of features: 16
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+23/02/19 17:15:02 WARN package: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting &#39;spark.sql.debug.maxToStringFields&#39;.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table border='1'>
+<tr><th>consumer_id_ref</th><th>date_ref</th><th>sum___paid_value</th><th>sum___discount</th><th>mean___paid_value</th><th>mean___discount</th><th>stddev___paid_value</th><th>stddev___discount</th><th>min___paid_value</th><th>min___discount</th><th>max___paid_value</th><th>max___discount</th><th>kurtosis___paid_value</th><th>kurtosis___discount</th><th>skewness___paid_value</th><th>skewness___discount</th></tr>
+<tr><td>29</td><td>2022-01-01</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr>
+<tr><td>29</td><td>2022-02-01</td><td>12884.503346711668</td><td>205</td><td>991.1156420547437</td><td>15.76923076923077</td><td>102.66345300595485</td><td>10.963225241337865</td><td>831.0771002092232</td><td>0</td><td>1213.2540898678285</td><td>25</td><td>-0.09162914408204115</td><td>-1.5023466666666672</td><td>0.5059625417668084</td><td>-0.44986279389757616</td></tr>
+<tr><td>26</td><td>2022-02-01</td><td>7508.382270897559</td><td>145</td><td>938.5477838621948</td><td>18.125</td><td>122.70809047827476</td><td>9.977653603356424</td><td>699.015702424566</td><td>0</td><td>1117.5160783905533</td><td>25</td><td>0.17455766080009605</td><td>-0.8945685616038936</td><td>-0.5859000078847572</td><td>-0.8306056504415191</td></tr>
+<tr><td>26</td><td>2022-01-01</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr>
+<tr><td>29</td><td>2022-03-01</td><td>21210.539323911595</td><td>285</td><td>1010.0256820910283</td><td>13.571428571428571</td><td>103.5649985708696</td><td>10.856202966836188</td><td>831.0771002092232</td><td>0</td><td>1213.2540898678285</td><td>25</td><td>-0.42409637366403885</td><td>-1.6466942148760342</td><td>0.47735984043558566</td><td>-0.07354907590508099</td></tr>
+</table></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">make_features</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">suites</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;numerical_in_categorical_groups&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{},</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Features created: </span><span class="si">{</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of features: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Features created: [&#39;consumer_id_ref&#39;, &#39;date_ref&#39;, &#39;product_type=g__sum___paid_value&#39;, &#39;product_type=g__sum___discount&#39;, &#39;product_type=g__mean___paid_value&#39;, &#39;product_type=g__mean___discount&#39;, &#39;product_type=g__stddev___paid_value&#39;, &#39;product_type=g__stddev___discount&#39;, &#39;product_type=g__min___paid_value&#39;, &#39;product_type=g__min___discount&#39;, &#39;product_type=g__max___paid_value&#39;, &#39;product_type=g__max___discount&#39;, &#39;product_type=g__kurtosis___paid_value&#39;, &#39;product_type=g__kurtosis___discount&#39;, &#39;product_type=g__skewness___paid_value&#39;, &#39;product_type=g__skewness___discount&#39;, &#39;product_type=None__sum___paid_value&#39;, &#39;product_type=None__sum___discount&#39;, &#39;product_type=None__mean___paid_value&#39;, &#39;product_type=None__mean___discount&#39;, &#39;product_type=None__stddev___paid_value&#39;, &#39;product_type=None__stddev___discount&#39;, &#39;product_type=None__min___paid_value&#39;, &#39;product_type=None__min___discount&#39;, &#39;product_type=None__max___paid_value&#39;, &#39;product_type=None__max___discount&#39;, &#39;product_type=None__kurtosis___paid_value&#39;, &#39;product_type=None__kurtosis___discount&#39;, &#39;product_type=None__skewness___paid_value&#39;, &#39;product_type=None__skewness___discount&#39;, &#39;product_type=f__sum___paid_value&#39;, &#39;product_type=f__sum___discount&#39;, &#39;product_type=f__mean___paid_value&#39;, &#39;product_type=f__mean___discount&#39;, &#39;product_type=f__stddev___paid_value&#39;, &#39;product_type=f__stddev___discount&#39;, &#39;product_type=f__min___paid_value&#39;, &#39;product_type=f__min___discount&#39;, &#39;product_type=f__max___paid_value&#39;, &#39;product_type=f__max___discount&#39;, &#39;product_type=f__kurtosis___paid_value&#39;, &#39;product_type=f__kurtosis___discount&#39;, &#39;product_type=f__skewness___paid_value&#39;, &#39;product_type=f__skewness___discount&#39;, &#39;product_type=e__sum___paid_value&#39;, &#39;product_type=e__sum___discount&#39;, &#39;product_type=e__mean___paid_value&#39;, &#39;product_type=e__mean___discount&#39;, &#39;product_type=e__stddev___paid_value&#39;, &#39;product_type=e__stddev___discount&#39;, &#39;product_type=e__min___paid_value&#39;, &#39;product_type=e__min___discount&#39;, &#39;product_type=e__max___paid_value&#39;, &#39;product_type=e__max___discount&#39;, &#39;product_type=e__kurtosis___paid_value&#39;, &#39;product_type=e__kurtosis___discount&#39;, &#39;product_type=e__skewness___paid_value&#39;, &#39;product_type=e__skewness___discount&#39;, &#39;product_type=h__sum___paid_value&#39;, &#39;product_type=h__sum___discount&#39;, &#39;product_type=h__mean___paid_value&#39;, &#39;product_type=h__mean___discount&#39;, &#39;product_type=h__stddev___paid_value&#39;, &#39;product_type=h__stddev___discount&#39;, &#39;product_type=h__min___paid_value&#39;, &#39;product_type=h__min___discount&#39;, &#39;product_type=h__max___paid_value&#39;, &#39;product_type=h__max___discount&#39;, &#39;product_type=h__kurtosis___paid_value&#39;, &#39;product_type=h__kurtosis___discount&#39;, &#39;product_type=h__skewness___paid_value&#39;, &#39;product_type=h__skewness___discount&#39;, &#39;product_type=d__sum___paid_value&#39;, &#39;product_type=d__sum___discount&#39;, &#39;product_type=d__mean___paid_value&#39;, &#39;product_type=d__mean___discount&#39;, &#39;product_type=d__stddev___paid_value&#39;, &#39;product_type=d__stddev___discount&#39;, &#39;product_type=d__min___paid_value&#39;, &#39;product_type=d__min___discount&#39;, &#39;product_type=d__max___paid_value&#39;, &#39;product_type=d__max___discount&#39;, &#39;product_type=d__kurtosis___paid_value&#39;, &#39;product_type=d__kurtosis___discount&#39;, &#39;product_type=d__skewness___paid_value&#39;, &#39;product_type=d__skewness___discount&#39;, &#39;product_type=c__sum___paid_value&#39;, &#39;product_type=c__sum___discount&#39;, &#39;product_type=c__mean___paid_value&#39;, &#39;product_type=c__mean___discount&#39;, &#39;product_type=c__stddev___paid_value&#39;, &#39;product_type=c__stddev___discount&#39;, &#39;product_type=c__min___paid_value&#39;, &#39;product_type=c__min___discount&#39;, &#39;product_type=c__max___paid_value&#39;, &#39;product_type=c__max___discount&#39;, &#39;product_type=c__kurtosis___paid_value&#39;, &#39;product_type=c__kurtosis___discount&#39;, &#39;product_type=c__skewness___paid_value&#39;, &#39;product_type=c__skewness___discount&#39;, &#39;product_type=b__sum___paid_value&#39;, &#39;product_type=b__sum___discount&#39;, &#39;product_type=b__mean___paid_value&#39;, &#39;product_type=b__mean___discount&#39;, &#39;product_type=b__stddev___paid_value&#39;, &#39;product_type=b__stddev___discount&#39;, &#39;product_type=b__min___paid_value&#39;, &#39;product_type=b__min___discount&#39;, &#39;product_type=b__max___paid_value&#39;, &#39;product_type=b__max___discount&#39;, &#39;product_type=b__kurtosis___paid_value&#39;, &#39;product_type=b__kurtosis___discount&#39;, &#39;product_type=b__skewness___paid_value&#39;, &#39;product_type=b__skewness___discount&#39;, &#39;product_type=a__sum___paid_value&#39;, &#39;product_type=a__sum___discount&#39;, &#39;product_type=a__mean___paid_value&#39;, &#39;product_type=a__mean___discount&#39;, &#39;product_type=a__stddev___paid_value&#39;, &#39;product_type=a__stddev___discount&#39;, &#39;product_type=a__min___paid_value&#39;, &#39;product_type=a__min___discount&#39;, &#39;product_type=a__max___paid_value&#39;, &#39;product_type=a__max___discount&#39;, &#39;product_type=a__kurtosis___paid_value&#39;, &#39;product_type=a__kurtosis___discount&#39;, &#39;product_type=a__skewness___paid_value&#39;, &#39;product_type=a__skewness___discount&#39;, &#39;buy_type=f_3__sum___paid_value&#39;, &#39;buy_type=f_3__sum___discount&#39;, &#39;buy_type=f_3__mean___paid_value&#39;, &#39;buy_type=f_3__mean___discount&#39;, &#39;buy_type=f_3__stddev___paid_value&#39;, &#39;buy_type=f_3__stddev___discount&#39;, &#39;buy_type=f_3__min___paid_value&#39;, &#39;buy_type=f_3__min___discount&#39;, &#39;buy_type=f_3__max___paid_value&#39;, &#39;buy_type=f_3__max___discount&#39;, &#39;buy_type=f_3__kurtosis___paid_value&#39;, &#39;buy_type=f_3__kurtosis___discount&#39;, &#39;buy_type=f_3__skewness___paid_value&#39;, &#39;buy_type=f_3__skewness___discount&#39;, &#39;buy_type=f_5__sum___paid_value&#39;, &#39;buy_type=f_5__sum___discount&#39;, &#39;buy_type=f_5__mean___paid_value&#39;, &#39;buy_type=f_5__mean___discount&#39;, &#39;buy_type=f_5__stddev___paid_value&#39;, &#39;buy_type=f_5__stddev___discount&#39;, &#39;buy_type=f_5__min___paid_value&#39;, &#39;buy_type=f_5__min___discount&#39;, &#39;buy_type=f_5__max___paid_value&#39;, &#39;buy_type=f_5__max___discount&#39;, &#39;buy_type=f_5__kurtosis___paid_value&#39;, &#39;buy_type=f_5__kurtosis___discount&#39;, &#39;buy_type=f_5__skewness___paid_value&#39;, &#39;buy_type=f_5__skewness___discount&#39;, &#39;buy_type=None__sum___paid_value&#39;, &#39;buy_type=None__sum___discount&#39;, &#39;buy_type=None__mean___paid_value&#39;, &#39;buy_type=None__mean___discount&#39;, &#39;buy_type=None__stddev___paid_value&#39;, &#39;buy_type=None__stddev___discount&#39;, &#39;buy_type=None__min___paid_value&#39;, &#39;buy_type=None__min___discount&#39;, &#39;buy_type=None__max___paid_value&#39;, &#39;buy_type=None__max___discount&#39;, &#39;buy_type=None__kurtosis___paid_value&#39;, &#39;buy_type=None__kurtosis___discount&#39;, &#39;buy_type=None__skewness___paid_value&#39;, &#39;buy_type=None__skewness___discount&#39;, &#39;buy_type=f_8__sum___paid_value&#39;, &#39;buy_type=f_8__sum___discount&#39;, &#39;buy_type=f_8__mean___paid_value&#39;, &#39;buy_type=f_8__mean___discount&#39;, &#39;buy_type=f_8__stddev___paid_value&#39;, &#39;buy_type=f_8__stddev___discount&#39;, &#39;buy_type=f_8__min___paid_value&#39;, &#39;buy_type=f_8__min___discount&#39;, &#39;buy_type=f_8__max___paid_value&#39;, &#39;buy_type=f_8__max___discount&#39;, &#39;buy_type=f_8__kurtosis___paid_value&#39;, &#39;buy_type=f_8__kurtosis___discount&#39;, &#39;buy_type=f_8__skewness___paid_value&#39;, &#39;buy_type=f_8__skewness___discount&#39;, &#39;buy_type=f_4__sum___paid_value&#39;, &#39;buy_type=f_4__sum___discount&#39;, &#39;buy_type=f_4__mean___paid_value&#39;, &#39;buy_type=f_4__mean___discount&#39;, &#39;buy_type=f_4__stddev___paid_value&#39;, &#39;buy_type=f_4__stddev___discount&#39;, &#39;buy_type=f_4__min___paid_value&#39;, &#39;buy_type=f_4__min___discount&#39;, &#39;buy_type=f_4__max___paid_value&#39;, &#39;buy_type=f_4__max___discount&#39;, &#39;buy_type=f_4__kurtosis___paid_value&#39;, &#39;buy_type=f_4__kurtosis___discount&#39;, &#39;buy_type=f_4__skewness___paid_value&#39;, &#39;buy_type=f_4__skewness___discount&#39;, &#39;buy_type=f_2__sum___paid_value&#39;, &#39;buy_type=f_2__sum___discount&#39;, &#39;buy_type=f_2__mean___paid_value&#39;, &#39;buy_type=f_2__mean___discount&#39;, &#39;buy_type=f_2__stddev___paid_value&#39;, &#39;buy_type=f_2__stddev___discount&#39;, &#39;buy_type=f_2__min___paid_value&#39;, &#39;buy_type=f_2__min___discount&#39;, &#39;buy_type=f_2__max___paid_value&#39;, &#39;buy_type=f_2__max___discount&#39;, &#39;buy_type=f_2__kurtosis___paid_value&#39;, &#39;buy_type=f_2__kurtosis___discount&#39;, &#39;buy_type=f_2__skewness___paid_value&#39;, &#39;buy_type=f_2__skewness___discount&#39;, &#39;buy_type=f_9__sum___paid_value&#39;, &#39;buy_type=f_9__sum___discount&#39;, &#39;buy_type=f_9__mean___paid_value&#39;, &#39;buy_type=f_9__mean___discount&#39;, &#39;buy_type=f_9__stddev___paid_value&#39;, &#39;buy_type=f_9__stddev___discount&#39;, &#39;buy_type=f_9__min___paid_value&#39;, &#39;buy_type=f_9__min___discount&#39;, &#39;buy_type=f_9__max___paid_value&#39;, &#39;buy_type=f_9__max___discount&#39;, &#39;buy_type=f_9__kurtosis___paid_value&#39;, &#39;buy_type=f_9__kurtosis___discount&#39;, &#39;buy_type=f_9__skewness___paid_value&#39;, &#39;buy_type=f_9__skewness___discount&#39;, &#39;buy_type=f_1__sum___paid_value&#39;, &#39;buy_type=f_1__sum___discount&#39;, &#39;buy_type=f_1__mean___paid_value&#39;, &#39;buy_type=f_1__mean___discount&#39;, &#39;buy_type=f_1__stddev___paid_value&#39;, &#39;buy_type=f_1__stddev___discount&#39;, &#39;buy_type=f_1__min___paid_value&#39;, &#39;buy_type=f_1__min___discount&#39;, &#39;buy_type=f_1__max___paid_value&#39;, &#39;buy_type=f_1__max___discount&#39;, &#39;buy_type=f_1__kurtosis___paid_value&#39;, &#39;buy_type=f_1__kurtosis___discount&#39;, &#39;buy_type=f_1__skewness___paid_value&#39;, &#39;buy_type=f_1__skewness___discount&#39;, &#39;buy_type=f_7__sum___paid_value&#39;, &#39;buy_type=f_7__sum___discount&#39;, &#39;buy_type=f_7__mean___paid_value&#39;, &#39;buy_type=f_7__mean___discount&#39;, &#39;buy_type=f_7__stddev___paid_value&#39;, &#39;buy_type=f_7__stddev___discount&#39;, &#39;buy_type=f_7__min___paid_value&#39;, &#39;buy_type=f_7__min___discount&#39;, &#39;buy_type=f_7__max___paid_value&#39;, &#39;buy_type=f_7__max___discount&#39;, &#39;buy_type=f_7__kurtosis___paid_value&#39;, &#39;buy_type=f_7__kurtosis___discount&#39;, &#39;buy_type=f_7__skewness___paid_value&#39;, &#39;buy_type=f_7__skewness___discount&#39;, &#39;buy_type=f_6__sum___paid_value&#39;, &#39;buy_type=f_6__sum___discount&#39;, &#39;buy_type=f_6__mean___paid_value&#39;, &#39;buy_type=f_6__mean___discount&#39;, &#39;buy_type=f_6__stddev___paid_value&#39;, &#39;buy_type=f_6__stddev___discount&#39;, &#39;buy_type=f_6__min___paid_value&#39;, &#39;buy_type=f_6__min___discount&#39;, &#39;buy_type=f_6__max___paid_value&#39;, &#39;buy_type=f_6__max___discount&#39;, &#39;buy_type=f_6__kurtosis___paid_value&#39;, &#39;buy_type=f_6__kurtosis___discount&#39;, &#39;buy_type=f_6__skewness___paid_value&#39;, &#39;buy_type=f_6__skewness___discount&#39;]
+Number of features: 268
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+[Stage 60:&gt;                                                         (0 + 1) / 1]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+23/02/19 17:15:29 WARN DAGScheduler: Broadcasting large task binary with size 1279.3 KiB
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+[Stage 73:&gt;                                                         (0 + 1) / 1]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+23/02/19 17:15:35 WARN DAGScheduler: Broadcasting large task binary with size 1279.3 KiB
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table border='1'>
+<tr><th>consumer_id_ref</th><th>date_ref</th><th>product_type=g__sum___paid_value</th><th>product_type=g__sum___discount</th><th>product_type=g__mean___paid_value</th><th>product_type=g__mean___discount</th><th>product_type=g__stddev___paid_value</th><th>product_type=g__stddev___discount</th><th>product_type=g__min___paid_value</th><th>product_type=g__min___discount</th><th>product_type=g__max___paid_value</th><th>product_type=g__max___discount</th><th>product_type=g__kurtosis___paid_value</th><th>product_type=g__kurtosis___discount</th><th>product_type=g__skewness___paid_value</th><th>product_type=g__skewness___discount</th><th>product_type=None__sum___paid_value</th><th>product_type=None__sum___discount</th><th>product_type=None__mean___paid_value</th><th>product_type=None__mean___discount</th><th>product_type=None__stddev___paid_value</th><th>product_type=None__stddev___discount</th><th>product_type=None__min___paid_value</th><th>product_type=None__min___discount</th><th>product_type=None__max___paid_value</th><th>product_type=None__max___discount</th><th>product_type=None__kurtosis___paid_value</th><th>product_type=None__kurtosis___discount</th><th>product_type=None__skewness___paid_value</th><th>product_type=None__skewness___discount</th><th>product_type=f__sum___paid_value</th><th>product_type=f__sum___discount</th><th>product_type=f__mean___paid_value</th><th>product_type=f__mean___discount</th><th>product_type=f__stddev___paid_value</th><th>product_type=f__stddev___discount</th><th>product_type=f__min___paid_value</th><th>product_type=f__min___discount</th><th>product_type=f__max___paid_value</th><th>product_type=f__max___discount</th><th>product_type=f__kurtosis___paid_value</th><th>product_type=f__kurtosis___discount</th><th>product_type=f__skewness___paid_value</th><th>product_type=f__skewness___discount</th><th>product_type=e__sum___paid_value</th><th>product_type=e__sum___discount</th><th>product_type=e__mean___paid_value</th><th>product_type=e__mean___discount</th><th>product_type=e__stddev___paid_value</th><th>product_type=e__stddev___discount</th><th>product_type=e__min___paid_value</th><th>product_type=e__min___discount</th><th>product_type=e__max___paid_value</th><th>product_type=e__max___discount</th><th>product_type=e__kurtosis___paid_value</th><th>product_type=e__kurtosis___discount</th><th>product_type=e__skewness___paid_value</th><th>product_type=e__skewness___discount</th><th>product_type=h__sum___paid_value</th><th>product_type=h__sum___discount</th><th>product_type=h__mean___paid_value</th><th>product_type=h__mean___discount</th><th>product_type=h__stddev___paid_value</th><th>product_type=h__stddev___discount</th><th>product_type=h__min___paid_value</th><th>product_type=h__min___discount</th><th>product_type=h__max___paid_value</th><th>product_type=h__max___discount</th><th>product_type=h__kurtosis___paid_value</th><th>product_type=h__kurtosis___discount</th><th>product_type=h__skewness___paid_value</th><th>product_type=h__skewness___discount</th><th>product_type=d__sum___paid_value</th><th>product_type=d__sum___discount</th><th>product_type=d__mean___paid_value</th><th>product_type=d__mean___discount</th><th>product_type=d__stddev___paid_value</th><th>product_type=d__stddev___discount</th><th>product_type=d__min___paid_value</th><th>product_type=d__min___discount</th><th>product_type=d__max___paid_value</th><th>product_type=d__max___discount</th><th>product_type=d__kurtosis___paid_value</th><th>product_type=d__kurtosis___discount</th><th>product_type=d__skewness___paid_value</th><th>product_type=d__skewness___discount</th><th>product_type=c__sum___paid_value</th><th>product_type=c__sum___discount</th><th>product_type=c__mean___paid_value</th><th>product_type=c__mean___discount</th><th>product_type=c__stddev___paid_value</th><th>product_type=c__stddev___discount</th><th>product_type=c__min___paid_value</th><th>product_type=c__min___discount</th><th>product_type=c__max___paid_value</th><th>product_type=c__max___discount</th><th>product_type=c__kurtosis___paid_value</th><th>product_type=c__kurtosis___discount</th><th>product_type=c__skewness___paid_value</th><th>product_type=c__skewness___discount</th><th>product_type=b__sum___paid_value</th><th>product_type=b__sum___discount</th><th>product_type=b__mean___paid_value</th><th>product_type=b__mean___discount</th><th>product_type=b__stddev___paid_value</th><th>product_type=b__stddev___discount</th><th>product_type=b__min___paid_value</th><th>product_type=b__min___discount</th><th>product_type=b__max___paid_value</th><th>product_type=b__max___discount</th><th>product_type=b__kurtosis___paid_value</th><th>product_type=b__kurtosis___discount</th><th>product_type=b__skewness___paid_value</th><th>product_type=b__skewness___discount</th><th>product_type=a__sum___paid_value</th><th>product_type=a__sum___discount</th><th>product_type=a__mean___paid_value</th><th>product_type=a__mean___discount</th><th>product_type=a__stddev___paid_value</th><th>product_type=a__stddev___discount</th><th>product_type=a__min___paid_value</th><th>product_type=a__min___discount</th><th>product_type=a__max___paid_value</th><th>product_type=a__max___discount</th><th>product_type=a__kurtosis___paid_value</th><th>product_type=a__kurtosis___discount</th><th>product_type=a__skewness___paid_value</th><th>product_type=a__skewness___discount</th><th>buy_type=f_3__sum___paid_value</th><th>buy_type=f_3__sum___discount</th><th>buy_type=f_3__mean___paid_value</th><th>buy_type=f_3__mean___discount</th><th>buy_type=f_3__stddev___paid_value</th><th>buy_type=f_3__stddev___discount</th><th>buy_type=f_3__min___paid_value</th><th>buy_type=f_3__min___discount</th><th>buy_type=f_3__max___paid_value</th><th>buy_type=f_3__max___discount</th><th>buy_type=f_3__kurtosis___paid_value</th><th>buy_type=f_3__kurtosis___discount</th><th>buy_type=f_3__skewness___paid_value</th><th>buy_type=f_3__skewness___discount</th><th>buy_type=f_5__sum___paid_value</th><th>buy_type=f_5__sum___discount</th><th>buy_type=f_5__mean___paid_value</th><th>buy_type=f_5__mean___discount</th><th>buy_type=f_5__stddev___paid_value</th><th>buy_type=f_5__stddev___discount</th><th>buy_type=f_5__min___paid_value</th><th>buy_type=f_5__min___discount</th><th>buy_type=f_5__max___paid_value</th><th>buy_type=f_5__max___discount</th><th>buy_type=f_5__kurtosis___paid_value</th><th>buy_type=f_5__kurtosis___discount</th><th>buy_type=f_5__skewness___paid_value</th><th>buy_type=f_5__skewness___discount</th><th>buy_type=None__sum___paid_value</th><th>buy_type=None__sum___discount</th><th>buy_type=None__mean___paid_value</th><th>buy_type=None__mean___discount</th><th>buy_type=None__stddev___paid_value</th><th>buy_type=None__stddev___discount</th><th>buy_type=None__min___paid_value</th><th>buy_type=None__min___discount</th><th>buy_type=None__max___paid_value</th><th>buy_type=None__max___discount</th><th>buy_type=None__kurtosis___paid_value</th><th>buy_type=None__kurtosis___discount</th><th>buy_type=None__skewness___paid_value</th><th>buy_type=None__skewness___discount</th><th>buy_type=f_8__sum___paid_value</th><th>buy_type=f_8__sum___discount</th><th>buy_type=f_8__mean___paid_value</th><th>buy_type=f_8__mean___discount</th><th>buy_type=f_8__stddev___paid_value</th><th>buy_type=f_8__stddev___discount</th><th>buy_type=f_8__min___paid_value</th><th>buy_type=f_8__min___discount</th><th>buy_type=f_8__max___paid_value</th><th>buy_type=f_8__max___discount</th><th>buy_type=f_8__kurtosis___paid_value</th><th>buy_type=f_8__kurtosis___discount</th><th>buy_type=f_8__skewness___paid_value</th><th>buy_type=f_8__skewness___discount</th><th>buy_type=f_4__sum___paid_value</th><th>buy_type=f_4__sum___discount</th><th>buy_type=f_4__mean___paid_value</th><th>buy_type=f_4__mean___discount</th><th>buy_type=f_4__stddev___paid_value</th><th>buy_type=f_4__stddev___discount</th><th>buy_type=f_4__min___paid_value</th><th>buy_type=f_4__min___discount</th><th>buy_type=f_4__max___paid_value</th><th>buy_type=f_4__max___discount</th><th>buy_type=f_4__kurtosis___paid_value</th><th>buy_type=f_4__kurtosis___discount</th><th>buy_type=f_4__skewness___paid_value</th><th>buy_type=f_4__skewness___discount</th><th>buy_type=f_2__sum___paid_value</th><th>buy_type=f_2__sum___discount</th><th>buy_type=f_2__mean___paid_value</th><th>buy_type=f_2__mean___discount</th><th>buy_type=f_2__stddev___paid_value</th><th>buy_type=f_2__stddev___discount</th><th>buy_type=f_2__min___paid_value</th><th>buy_type=f_2__min___discount</th><th>buy_type=f_2__max___paid_value</th><th>buy_type=f_2__max___discount</th><th>buy_type=f_2__kurtosis___paid_value</th><th>buy_type=f_2__kurtosis___discount</th><th>buy_type=f_2__skewness___paid_value</th><th>buy_type=f_2__skewness___discount</th><th>buy_type=f_9__sum___paid_value</th><th>buy_type=f_9__sum___discount</th><th>buy_type=f_9__mean___paid_value</th><th>buy_type=f_9__mean___discount</th><th>buy_type=f_9__stddev___paid_value</th><th>buy_type=f_9__stddev___discount</th><th>buy_type=f_9__min___paid_value</th><th>buy_type=f_9__min___discount</th><th>buy_type=f_9__max___paid_value</th><th>buy_type=f_9__max___discount</th><th>buy_type=f_9__kurtosis___paid_value</th><th>buy_type=f_9__kurtosis___discount</th><th>buy_type=f_9__skewness___paid_value</th><th>buy_type=f_9__skewness___discount</th><th>buy_type=f_1__sum___paid_value</th><th>buy_type=f_1__sum___discount</th><th>buy_type=f_1__mean___paid_value</th><th>buy_type=f_1__mean___discount</th><th>buy_type=f_1__stddev___paid_value</th><th>buy_type=f_1__stddev___discount</th><th>buy_type=f_1__min___paid_value</th><th>buy_type=f_1__min___discount</th><th>buy_type=f_1__max___paid_value</th><th>buy_type=f_1__max___discount</th><th>buy_type=f_1__kurtosis___paid_value</th><th>buy_type=f_1__kurtosis___discount</th><th>buy_type=f_1__skewness___paid_value</th><th>buy_type=f_1__skewness___discount</th><th>buy_type=f_7__sum___paid_value</th><th>buy_type=f_7__sum___discount</th><th>buy_type=f_7__mean___paid_value</th><th>buy_type=f_7__mean___discount</th><th>buy_type=f_7__stddev___paid_value</th><th>buy_type=f_7__stddev___discount</th><th>buy_type=f_7__min___paid_value</th><th>buy_type=f_7__min___discount</th><th>buy_type=f_7__max___paid_value</th><th>buy_type=f_7__max___discount</th><th>buy_type=f_7__kurtosis___paid_value</th><th>buy_type=f_7__kurtosis___discount</th><th>buy_type=f_7__skewness___paid_value</th><th>buy_type=f_7__skewness___discount</th><th>buy_type=f_6__sum___paid_value</th><th>buy_type=f_6__sum___discount</th><th>buy_type=f_6__mean___paid_value</th><th>buy_type=f_6__mean___discount</th><th>buy_type=f_6__stddev___paid_value</th><th>buy_type=f_6__stddev___discount</th><th>buy_type=f_6__min___paid_value</th><th>buy_type=f_6__min___discount</th><th>buy_type=f_6__max___paid_value</th><th>buy_type=f_6__max___discount</th><th>buy_type=f_6__kurtosis___paid_value</th><th>buy_type=f_6__kurtosis___discount</th><th>buy_type=f_6__skewness___paid_value</th><th>buy_type=f_6__skewness___discount</th></tr>
+<tr><td>29</td><td>2022-01-01</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr>
+<tr><td>29</td><td>2022-02-01</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>884.5944592908111</td><td>25</td><td>884.5944592908111</td><td>25.0</td><td>null</td><td>null</td><td>884.5944592908111</td><td>25</td><td>884.5944592908111</td><td>25</td><td>null</td><td>null</td><td>null</td><td>null</td><td>886.2905776828845</td><td>25</td><td>886.2905776828845</td><td>25.0</td><td>null</td><td>null</td><td>886.2905776828845</td><td>25</td><td>886.2905776828845</td><td>25</td><td>null</td><td>null</td><td>null</td><td>null</td><td>1213.2540898678285</td><td>10</td><td>1213.2540898678285</td><td>10.0</td><td>null</td><td>null</td><td>1213.2540898678285</td><td>10</td><td>1213.2540898678285</td><td>10</td><td>null</td><td>null</td><td>null</td><td>null</td><td>2083.8590821960192</td><td>25</td><td>1041.9295410980096</td><td>12.5</td><td>83.86297857953484</td><td>17.67766952966369</td><td>982.6294602539184</td><td>0</td><td>1101.229621942101</td><td>25</td><td>-2.000000000000001</td><td>-2.0</td><td>0.0</td><td>0.0</td><td>831.0771002092232</td><td>25</td><td>831.0771002092232</td><td>25.0</td><td>null</td><td>null</td><td>831.0771002092232</td><td>25</td><td>831.0771002092232</td><td>25</td><td>null</td><td>null</td><td>null</td><td>null</td><td>3909.098480634181</td><td>60</td><td>977.2746201585453</td><td>15.0</td><td>43.81758685407173</td><td>12.24744871391589</td><td>924.5760523472333</td><td>0</td><td>1017.3549481973807</td><td>25</td><td>-1.6199093756992955</td><td>-1.5925925925925926</td><td>-0.2604085257392011</td><td>-0.3142696805273544</td><td>3076.3295568307176</td><td>35</td><td>1025.4431856102392</td><td>11.666666666666666</td><td>58.84747546374615</td><td>12.583057392117917</td><td>964.2147974008213</td><td>0</td><td>1081.5787183634952</td><td>25</td><td>-1.4999999999999996</td><td>-1.4999999999999998</td><td>-0.15779942094842198</td><td>0.23906314692954492</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>3252.83718793302</td><td>45</td><td>1084.27906264434</td><td>15.0</td><td>112.21123983157497</td><td>8.660254037844387</td><td>1009.0470569987901</td><td>10</td><td>1213.2540898678285</td><td>25</td><td>-1.4999999999999993</td><td>-1.5</td><td>0.6780444320237246</td><td>0.7071067811865476</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>1999.9844084512993</td><td>25</td><td>999.9922042256496</td><td>12.5</td><td>24.55462800483391</td><td>17.67766952966369</td><td>982.6294602539184</td><td>0</td><td>1017.3549481973807</td><td>25</td><td>-2.0000000000000018</td><td>-2.0</td><td>0.0</td><td>0.0</td><td>2872.1146589157966</td><td>75</td><td>957.3715529719321</td><td>25.0</td><td>124.58762864052495</td><td>0.0</td><td>884.5944592908111</td><td>25</td><td>1101.229621942101</td><td>25</td><td>-1.5000000000000009</td><td>null</td><td>0.7069593492304863</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>1755.6531525564565</td><td>35</td><td>877.8265762782282</td><td>17.5</td><td>66.11374309062336</td><td>10.606601717798213</td><td>831.0771002092232</td><td>10</td><td>924.5760523472333</td><td>25</td><td>-2.000000000000001</td><td>-2.0</td><td>0.0</td><td>0.0</td><td>1081.5787183634952</td><td>0</td><td>1081.5787183634952</td><td>0.0</td><td>null</td><td>null</td><td>1081.5787183634952</td><td>0</td><td>1081.5787183634952</td><td>0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>1922.3352204915986</td><td>25</td><td>961.1676102457993</td><td>12.5</td><td>4.3093734017213015</td><td>17.67766952966369</td><td>958.1204230907772</td><td>0</td><td>964.2147974008213</td><td>25</td><td>-2.0000000000000004</td><td>-2.0</td><td>0.0</td><td>0.0</td></tr>
+<tr><td>26</td><td>2022-02-01</td><td>1117.5160783905533</td><td>25</td><td>1117.5160783905533</td><td>25.0</td><td>null</td><td>null</td><td>1117.5160783905533</td><td>25</td><td>1117.5160783905533</td><td>25</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>1849.5291491085488</td><td>25</td><td>924.7645745542744</td><td>12.5</td><td>22.252096881465388</td><td>17.67766952966369</td><td>909.0299659537702</td><td>0</td><td>940.4991831547786</td><td>25</td><td>-2.0000000000000004</td><td>-2.0</td><td>0.0</td><td>0.0</td><td>1927.3001443862136</td><td>35</td><td>963.6500721931068</td><td>17.5</td><td>91.88965002307609</td><td>10.606601717798213</td><td>898.674277540931</td><td>10</td><td>1028.6258668452824</td><td>25</td><td>-1.9999999999999987</td><td>-2.0</td><td>4.243804258292301...</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>909.0471271961791</td><td>25</td><td>909.0471271961791</td><td>25.0</td><td>null</td><td>null</td><td>909.0471271961791</td><td>25</td><td>909.0471271961791</td><td>25</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>1704.9897718160641</td><td>35</td><td>852.4948859080321</td><td>17.5</td><td>217.05234282426633</td><td>10.606601717798213</td><td>699.015702424566</td><td>10</td><td>1005.974069391498</td><td>25</td><td>-2.000000000000001</td><td>-2.0</td><td>-5.15206917548129...</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>1005.974069391498</td><td>10</td><td>1005.974069391498</td><td>10.0</td><td>null</td><td>null</td><td>1005.974069391498</td><td>10</td><td>1005.974069391498</td><td>10</td><td>null</td><td>null</td><td>null</td><td>null</td><td>4486.217845574576</td><td>100</td><td>897.2435691149152</td><td>20.0</td><td>121.1454565484237</td><td>11.180339887498947</td><td>699.015702424566</td><td>0</td><td>1028.6258668452824</td><td>25</td><td>-0.32241428941626227</td><td>0.25000000000000044</td><td>-0.8547657407531712</td><td>-1.5000000000000002</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>898.674277540931</td><td>10</td><td>898.674277540931</td><td>10.0</td><td>null</td><td>null</td><td>898.674277540931</td><td>10</td><td>898.674277540931</td><td>10</td><td>null</td><td>null</td><td>null</td><td>null</td><td>1117.5160783905533</td><td>25</td><td>1117.5160783905533</td><td>25.0</td><td>null</td><td>null</td><td>1117.5160783905533</td><td>25</td><td>1117.5160783905533</td><td>25</td><td>null</td><td>null</td><td>null</td><td>null</td></tr>
+<tr><td>26</td><td>2022-01-01</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr>
+<tr><td>29</td><td>2022-03-01</td><td>922.5596334496767</td><td>10</td><td>922.5596334496767</td><td>10.0</td><td>null</td><td>null</td><td>922.5596334496767</td><td>10</td><td>922.5596334496767</td><td>10</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>884.5944592908111</td><td>25</td><td>884.5944592908111</td><td>25.0</td><td>null</td><td>null</td><td>884.5944592908111</td><td>25</td><td>884.5944592908111</td><td>25</td><td>null</td><td>null</td><td>null</td><td>null</td><td>4047.191603288681</td><td>75</td><td>1011.7979008221703</td><td>18.75</td><td>117.00593730173313</td><td>12.499999999999998</td><td>886.2905776828845</td><td>0</td><td>1169.1982542099925</td><td>25</td><td>-0.9556889516290736</td><td>-0.6666666666666665</td><td>0.4596043461170481</td><td>-1.1547005383792515</td><td>2420.2538373529997</td><td>10</td><td>1210.1269186764998</td><td>5.0</td><td>4.422487910639596</td><td>7.0710678118654755</td><td>1206.999747485171</td><td>0</td><td>1213.2540898678285</td><td>10</td><td>-1.9999999999999982</td><td>-2.0</td><td>0.0</td><td>0.0</td><td>3176.752015585457</td><td>35</td><td>1058.9173385284855</td><td>11.666666666666666</td><td>66.19860551954564</td><td>12.583057392117915</td><td>982.6294602539184</td><td>0</td><td>1101.229621942101</td><td>25</td><td>-1.4999999999999993</td><td>-1.5000000000000009</td><td>-0.6945114883456114</td><td>0.23906314692954528</td><td>1827.969447590202</td><td>25</td><td>913.984723795101</td><td>12.5</td><td>117.24908569927177</td><td>17.67766952966369</td><td>831.0771002092232</td><td>0</td><td>996.8923473809787</td><td>25</td><td>-2.0</td><td>-2.0</td><td>0.0</td><td>0.0</td><td>3909.098480634181</td><td>60</td><td>977.2746201585453</td><td>15.0</td><td>43.81758685407173</td><td>12.24744871391589</td><td>924.5760523472333</td><td>0</td><td>1017.3549481973807</td><td>25</td><td>-1.6199093756992955</td><td>-1.5925925925925926</td><td>-0.2604085257392011</td><td>-0.3142696805273544</td><td>4022.1198467195895</td><td>45</td><td>1005.5299616798974</td><td>11.25</td><td>62.40856934885263</td><td>10.307764064044152</td><td>945.790289888872</td><td>0</td><td>1081.5787183634952</td><td>25</td><td>-1.550060685136163</td><td>-0.9619377162629759</td><td>0.27193999565353094</td><td>0.4118470835376499</td><td>991.6308410556854</td><td>25</td><td>991.6308410556854</td><td>25.0</td><td>null</td><td>null</td><td>991.6308410556854</td><td>25</td><td>991.6308410556854</td><td>25</td><td>null</td><td>null</td><td>null</td><td>null</td><td>5198.6994081620105</td><td>55</td><td>1039.739881632402</td><td>11.0</td><td>101.89947592262668</td><td>8.944271909999157</td><td>945.790289888872</td><td>0</td><td>1213.2540898678285</td><td>25</td><td>-0.13716504414508046</td><td>-0.4091796875000009</td><td>1.1366228563682361</td><td>0.5507812500000008</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>2922.5440419009756</td><td>35</td><td>974.1813473003252</td><td>11.666666666666666</td><td>47.959002115208484</td><td>12.583057392117915</td><td>922.5596334496767</td><td>0</td><td>1017.3549481973807</td><td>25</td><td>-1.4999999999999998</td><td>-1.5000000000000009</td><td>-0.3135717124003845</td><td>0.23906314692954528</td><td>3869.007006296775</td><td>75</td><td>967.2517515741938</td><td>18.75</td><td>103.62685352356037</td><td>12.499999999999998</td><td>884.5944592908111</td><td>0</td><td>1101.229621942101</td><td>25</td><td>-1.409700219854243</td><td>-0.6666666666666665</td><td>0.4619435984415551</td><td>-1.1547005383792515</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>4131.85115425162</td><td>60</td><td>1032.962788562905</td><td>15.0</td><td>183.8064932843911</td><td>12.24744871391589</td><td>831.0771002092232</td><td>0</td><td>1206.999747485171</td><td>25</td><td>-1.8080670781329553</td><td>-1.5925925925925926</td><td>-0.10548035640930443</td><td>-0.31426968052735427</td><td>1081.5787183634952</td><td>0</td><td>1081.5787183634952</td><td>0.0</td><td>null</td><td>null</td><td>1081.5787183634952</td><td>0</td><td>1081.5787183634952</td><td>0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>3015.2281538810357</td><td>35</td><td>1005.0760512936786</td><td>11.666666666666666</td><td>76.1126726329002</td><td>12.583057392117915</td><td>958.1204230907772</td><td>0</td><td>1092.8929333894375</td><td>25</td><td>-1.4999999999999993</td><td>-1.5000000000000009</td><td>0.7020100516901682</td><td>0.23906314692954528</td></tr>
+</table></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">make_features</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">suites</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;correlation&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{},</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Features created: </span><span class="si">{</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of features: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Features created: [&#39;consumer_id_ref&#39;, &#39;date_ref&#39;, &#39;corr_between___paid_value_discount&#39;]
+Number of features: 3
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table border='1'>
+<tr><th>consumer_id_ref</th><th>date_ref</th><th>corr_between___paid_value_discount</th></tr>
+<tr><td>29</td><td>2022-01-01</td><td>null</td></tr>
+<tr><td>29</td><td>2022-02-01</td><td>-0.30725215225993513</td></tr>
+<tr><td>26</td><td>2022-02-01</td><td>0.037880942524043705</td></tr>
+<tr><td>26</td><td>2022-01-01</td><td>null</td></tr>
+<tr><td>29</td><td>2022-03-01</td><td>-0.2310407779936052</td></tr>
+</table></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">make_features</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">suites</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;categorical_statistics&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{},</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Features created: </span><span class="si">{</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of features: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Features created: [&#39;consumer_id_ref&#39;, &#39;date_ref&#39;, &#39;product_type=g__count___product_type&#39;, &#39;product_type=None__count___product_type&#39;, &#39;product_type=f__count___product_type&#39;, &#39;product_type=e__count___product_type&#39;, &#39;product_type=h__count___product_type&#39;, &#39;product_type=d__count___product_type&#39;, &#39;product_type=c__count___product_type&#39;, &#39;product_type=b__count___product_type&#39;, &#39;product_type=a__count___product_type&#39;, &#39;buy_type=f_3__count___buy_type&#39;, &#39;buy_type=f_5__count___buy_type&#39;, &#39;buy_type=None__count___buy_type&#39;, &#39;buy_type=f_8__count___buy_type&#39;, &#39;buy_type=f_4__count___buy_type&#39;, &#39;buy_type=f_2__count___buy_type&#39;, &#39;buy_type=f_9__count___buy_type&#39;, &#39;buy_type=f_1__count___buy_type&#39;, &#39;buy_type=f_7__count___buy_type&#39;, &#39;buy_type=f_6__count___buy_type&#39;, &#39;count___product_type&#39;, &#39;countDistinct___product_type&#39;, &#39;count___buy_type&#39;, &#39;countDistinct___buy_type&#39;]
+Number of features: 25
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table border='1'>
+<tr><th>consumer_id_ref</th><th>date_ref</th><th>product_type=g__count___product_type</th><th>product_type=None__count___product_type</th><th>product_type=f__count___product_type</th><th>product_type=e__count___product_type</th><th>product_type=h__count___product_type</th><th>product_type=d__count___product_type</th><th>product_type=c__count___product_type</th><th>product_type=b__count___product_type</th><th>product_type=a__count___product_type</th><th>buy_type=f_3__count___buy_type</th><th>buy_type=f_5__count___buy_type</th><th>buy_type=None__count___buy_type</th><th>buy_type=f_8__count___buy_type</th><th>buy_type=f_4__count___buy_type</th><th>buy_type=f_2__count___buy_type</th><th>buy_type=f_9__count___buy_type</th><th>buy_type=f_1__count___buy_type</th><th>buy_type=f_7__count___buy_type</th><th>buy_type=f_6__count___buy_type</th><th>count___product_type</th><th>countDistinct___product_type</th><th>count___buy_type</th><th>countDistinct___buy_type</th></tr>
+<tr><td>70</td><td>2022-02-01</td><td>2</td><td>0</td><td>3</td><td>0</td><td>1</td><td>2</td><td>1</td><td>2</td><td>4</td><td>3</td><td>0</td><td>0</td><td>1</td><td>5</td><td>1</td><td>3</td><td>1</td><td>1</td><td>0</td><td>15</td><td>7</td><td>15</td><td>7</td></tr>
+<tr><td>46</td><td>2022-03-01</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>5</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>2</td><td>1</td><td>1</td><td>2</td><td>2</td><td>1</td><td>1</td><td>11</td><td>7</td><td>11</td><td>8</td></tr>
+<tr><td>55</td><td>2022-03-01</td><td>2</td><td>0</td><td>3</td><td>1</td><td>2</td><td>0</td><td>3</td><td>2</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>4</td><td>3</td><td>1</td><td>2</td><td>14</td><td>7</td><td>14</td><td>8</td></tr>
+<tr><td>80</td><td>2022-11-01</td><td>2</td><td>0</td><td>1</td><td>3</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>3</td><td>1</td><td>0</td><td>3</td><td>3</td><td>0</td><td>2</td><td>1</td><td>1</td><td>2</td><td>16</td><td>7</td><td>16</td><td>8</td></tr>
+<tr><td>1</td><td>2022-04-01</td><td>1</td><td>0</td><td>1</td><td>4</td><td>1</td><td>0</td><td>2</td><td>1</td><td>6</td><td>3</td><td>3</td><td>0</td><td>0</td><td>1</td><td>2</td><td>1</td><td>1</td><td>1</td><td>4</td><td>16</td><td>7</td><td>16</td><td>8</td></tr>
+</table></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">make_features</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">suites</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;first_observation_features&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{},</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Features created: </span><span class="si">{</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of features: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Features created: [&#39;consumer_id_ref&#39;, &#39;date_ref&#39;, &#39;first___paid_value&#39;, &#39;first___discount&#39;]
+Number of features: 4
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table border='1'>
+<tr><th>consumer_id_ref</th><th>date_ref</th><th>first___paid_value</th><th>first___discount</th></tr>
+<tr><td>0</td><td>2022-01-01</td><td>null</td><td>null</td></tr>
+<tr><td>0</td><td>2022-02-01</td><td>724.6474816548626</td><td>0</td></tr>
+<tr><td>0</td><td>2022-03-01</td><td>724.6474816548626</td><td>0</td></tr>
+<tr><td>0</td><td>2022-04-01</td><td>724.6474816548626</td><td>0</td></tr>
+<tr><td>0</td><td>2022-05-01</td><td>989.642360404834</td><td>0</td></tr>
+</table></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">make_features</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">suites</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;last_observation_features&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{},</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Features created: </span><span class="si">{</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of features: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Features created: [&#39;consumer_id_ref&#39;, &#39;date_ref&#39;, &#39;last___paid_value&#39;, &#39;last___discount&#39;]
+Number of features: 4
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table border='1'>
+<tr><th>consumer_id_ref</th><th>date_ref</th><th>last___paid_value</th><th>last___discount</th></tr>
+<tr><td>0</td><td>2022-01-01</td><td>null</td><td>null</td></tr>
+<tr><td>0</td><td>2022-02-01</td><td>989.642360404834</td><td>0</td></tr>
+<tr><td>0</td><td>2022-03-01</td><td>1068.3206046873418</td><td>25</td></tr>
+<tr><td>0</td><td>2022-04-01</td><td>940.2798461945033</td><td>25</td></tr>
+<tr><td>0</td><td>2022-05-01</td><td>1047.8739332006205</td><td>10</td></tr>
+</table></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">make_features</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">suites</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;numerical_statistics&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;lags&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;n_lags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]},</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Features created: </span><span class="si">{</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of features: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Features created: [&#39;consumer_id_ref&#39;, &#39;date_ref&#39;, &#39;sum___paid_value&#39;, &#39;sum___discount&#39;, &#39;mean___paid_value&#39;, &#39;mean___discount&#39;, &#39;stddev___paid_value&#39;, &#39;stddev___discount&#39;, &#39;min___paid_value&#39;, &#39;min___discount&#39;, &#39;max___paid_value&#39;, &#39;max___discount&#39;, &#39;kurtosis___paid_value&#39;, &#39;kurtosis___discount&#39;, &#39;skewness___paid_value&#39;, &#39;skewness___discount&#39;, &#39;lag=1_sum___paid_value&#39;, &#39;lag=1_sum___discount&#39;, &#39;lag=1_mean___paid_value&#39;, &#39;lag=1_mean___discount&#39;, &#39;lag=1_stddev___paid_value&#39;, &#39;lag=1_stddev___discount&#39;, &#39;lag=1_min___paid_value&#39;, &#39;lag=1_min___discount&#39;, &#39;lag=1_max___paid_value&#39;, &#39;lag=1_max___discount&#39;, &#39;lag=1_kurtosis___paid_value&#39;, &#39;lag=1_kurtosis___discount&#39;, &#39;lag=1_skewness___paid_value&#39;, &#39;lag=1_skewness___discount&#39;, &#39;lag=3_sum___paid_value&#39;, &#39;lag=3_sum___discount&#39;, &#39;lag=3_mean___paid_value&#39;, &#39;lag=3_mean___discount&#39;, &#39;lag=3_stddev___paid_value&#39;, &#39;lag=3_stddev___discount&#39;, &#39;lag=3_min___paid_value&#39;, &#39;lag=3_min___discount&#39;, &#39;lag=3_max___paid_value&#39;, &#39;lag=3_max___discount&#39;, &#39;lag=3_kurtosis___paid_value&#39;, &#39;lag=3_kurtosis___discount&#39;, &#39;lag=3_skewness___paid_value&#39;, &#39;lag=3_skewness___discount&#39;, &#39;lag=4_sum___paid_value&#39;, &#39;lag=4_sum___discount&#39;, &#39;lag=4_mean___paid_value&#39;, &#39;lag=4_mean___discount&#39;, &#39;lag=4_stddev___paid_value&#39;, &#39;lag=4_stddev___discount&#39;, &#39;lag=4_min___paid_value&#39;, &#39;lag=4_min___discount&#39;, &#39;lag=4_max___paid_value&#39;, &#39;lag=4_max___discount&#39;, &#39;lag=4_kurtosis___paid_value&#39;, &#39;lag=4_kurtosis___discount&#39;, &#39;lag=4_skewness___paid_value&#39;, &#39;lag=4_skewness___discount&#39;, &#39;lag=5_sum___paid_value&#39;, &#39;lag=5_sum___discount&#39;, &#39;lag=5_mean___paid_value&#39;, &#39;lag=5_mean___discount&#39;, &#39;lag=5_stddev___paid_value&#39;, &#39;lag=5_stddev___discount&#39;, &#39;lag=5_min___paid_value&#39;, &#39;lag=5_min___discount&#39;, &#39;lag=5_max___paid_value&#39;, &#39;lag=5_max___discount&#39;, &#39;lag=5_kurtosis___paid_value&#39;, &#39;lag=5_kurtosis___discount&#39;, &#39;lag=5_skewness___paid_value&#39;, &#39;lag=5_skewness___discount&#39;]
+Number of features: 72
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table border='1'>
+<tr><th>consumer_id_ref</th><th>date_ref</th><th>sum___paid_value</th><th>sum___discount</th><th>mean___paid_value</th><th>mean___discount</th><th>stddev___paid_value</th><th>stddev___discount</th><th>min___paid_value</th><th>min___discount</th><th>max___paid_value</th><th>max___discount</th><th>kurtosis___paid_value</th><th>kurtosis___discount</th><th>skewness___paid_value</th><th>skewness___discount</th><th>lag=1_sum___paid_value</th><th>lag=1_sum___discount</th><th>lag=1_mean___paid_value</th><th>lag=1_mean___discount</th><th>lag=1_stddev___paid_value</th><th>lag=1_stddev___discount</th><th>lag=1_min___paid_value</th><th>lag=1_min___discount</th><th>lag=1_max___paid_value</th><th>lag=1_max___discount</th><th>lag=1_kurtosis___paid_value</th><th>lag=1_kurtosis___discount</th><th>lag=1_skewness___paid_value</th><th>lag=1_skewness___discount</th><th>lag=3_sum___paid_value</th><th>lag=3_sum___discount</th><th>lag=3_mean___paid_value</th><th>lag=3_mean___discount</th><th>lag=3_stddev___paid_value</th><th>lag=3_stddev___discount</th><th>lag=3_min___paid_value</th><th>lag=3_min___discount</th><th>lag=3_max___paid_value</th><th>lag=3_max___discount</th><th>lag=3_kurtosis___paid_value</th><th>lag=3_kurtosis___discount</th><th>lag=3_skewness___paid_value</th><th>lag=3_skewness___discount</th><th>lag=4_sum___paid_value</th><th>lag=4_sum___discount</th><th>lag=4_mean___paid_value</th><th>lag=4_mean___discount</th><th>lag=4_stddev___paid_value</th><th>lag=4_stddev___discount</th><th>lag=4_min___paid_value</th><th>lag=4_min___discount</th><th>lag=4_max___paid_value</th><th>lag=4_max___discount</th><th>lag=4_kurtosis___paid_value</th><th>lag=4_kurtosis___discount</th><th>lag=4_skewness___paid_value</th><th>lag=4_skewness___discount</th><th>lag=5_sum___paid_value</th><th>lag=5_sum___discount</th><th>lag=5_mean___paid_value</th><th>lag=5_mean___discount</th><th>lag=5_stddev___paid_value</th><th>lag=5_stddev___discount</th><th>lag=5_min___paid_value</th><th>lag=5_min___discount</th><th>lag=5_max___paid_value</th><th>lag=5_max___discount</th><th>lag=5_kurtosis___paid_value</th><th>lag=5_kurtosis___discount</th><th>lag=5_skewness___paid_value</th><th>lag=5_skewness___discount</th></tr>
+<tr><td>0</td><td>2022-01-01</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr>
+<tr><td>0</td><td>2022-02-01</td><td>8002.543578036849</td><td>55</td><td>1000.3179472546061</td><td>6.875</td><td>118.5476910585547</td><td>8.838834764831844</td><td>724.6474816548626</td><td>0</td><td>1092.4934907204822</td><td>25</td><td>1.8855027332009806</td><td>0.1335510204081629</td><td>-1.764323227323885</td><td>1.0496613364713396</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr>
+<tr><td>0</td><td>2022-03-01</td><td>18183.864504218556</td><td>180</td><td>1010.2146946788087</td><td>10.0</td><td>88.82691760886172</td><td>11.504474832710557</td><td>724.6474816548626</td><td>0</td><td>1114.2036899159368</td><td>25</td><td>4.00337819774453</td><td>-1.6</td><td>-1.8871738944593603</td><td>0.447213595499958</td><td>8002.543578036849</td><td>55</td><td>1000.3179472546061</td><td>6.875</td><td>118.5476910585547</td><td>8.838834764831844</td><td>724.6474816548626</td><td>0</td><td>1092.4934907204822</td><td>25</td><td>1.8855027332009806</td><td>0.1335510204081629</td><td>-1.764323227323885</td><td>1.0496613364713396</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr>
+<tr><td>0</td><td>2022-04-01</td><td>23073.719219865256</td><td>250</td><td>1003.2051834724024</td><td>10.869565217391305</td><td>91.68364350589783</td><td>11.246431142310668</td><td>724.6474816548626</td><td>0</td><td>1166.5396308621657</td><td>25</td><td>1.930602398031068</td><td>-1.6379455566406262</td><td>-1.00759236996</td><td>0.3177718469055919</td><td>18183.864504218556</td><td>180</td><td>1010.2146946788087</td><td>10.0</td><td>88.82691760886172</td><td>11.504474832710557</td><td>724.6474816548626</td><td>0</td><td>1114.2036899159368</td><td>25</td><td>4.00337819774453</td><td>-1.6</td><td>-1.8871738944593603</td><td>0.447213595499958</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr>
+<tr><td>0</td><td>2022-05-01</td><td>27898.085780020647</td><td>335</td><td>996.3602064293088</td><td>11.964285714285714</td><td>89.04801902004334</td><td>11.331640863356228</td><td>783.539838218848</td><td>0</td><td>1169.5751292317634</td><td>25</td><td>0.015765997211552918</td><td>-1.7348126758682978</td><td>-0.04146256322646...</td><td>0.14211194159975876</td><td>23073.719219865256</td><td>250</td><td>1003.2051834724024</td><td>10.869565217391305</td><td>91.68364350589783</td><td>11.246431142310668</td><td>724.6474816548626</td><td>0</td><td>1166.5396308621657</td><td>25</td><td>1.930602398031068</td><td>-1.6379455566406262</td><td>-1.00759236996</td><td>0.3177718469055919</td><td>8002.543578036849</td><td>55</td><td>1000.3179472546061</td><td>6.875</td><td>118.5476910585547</td><td>8.838834764831844</td><td>724.6474816548626</td><td>0</td><td>1092.4934907204822</td><td>25</td><td>1.8855027332009806</td><td>0.1335510204081629</td><td>-1.764323227323885</td><td>1.0496613364713396</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr>
+</table></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">make_features</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">suites</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;numerical_statistics&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;increase_rate&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{},</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Features created: </span><span class="si">{</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of features: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Features created: [&#39;consumer_id_ref&#39;, &#39;date_ref&#39;, &#39;sum___paid_value&#39;, &#39;sum___discount&#39;, &#39;mean___paid_value&#39;, &#39;mean___discount&#39;, &#39;stddev___paid_value&#39;, &#39;stddev___discount&#39;, &#39;min___paid_value&#39;, &#39;min___discount&#39;, &#39;max___paid_value&#39;, &#39;max___discount&#39;, &#39;kurtosis___paid_value&#39;, &#39;kurtosis___discount&#39;, &#39;skewness___paid_value&#39;, &#39;skewness___discount&#39;, &#39;increase_rate_sum___paid_value&#39;, &#39;increase_rate_sum___discount&#39;, &#39;increase_rate_mean___paid_value&#39;, &#39;increase_rate_mean___discount&#39;, &#39;increase_rate_stddev___paid_value&#39;, &#39;increase_rate_stddev___discount&#39;, &#39;increase_rate_min___paid_value&#39;, &#39;increase_rate_min___discount&#39;, &#39;increase_rate_max___paid_value&#39;, &#39;increase_rate_max___discount&#39;, &#39;increase_rate_kurtosis___paid_value&#39;, &#39;increase_rate_kurtosis___discount&#39;, &#39;increase_rate_skewness___paid_value&#39;, &#39;increase_rate_skewness___discount&#39;]
+Number of features: 30
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table border='1'>
+<tr><th>consumer_id_ref</th><th>date_ref</th><th>sum___paid_value</th><th>sum___discount</th><th>mean___paid_value</th><th>mean___discount</th><th>stddev___paid_value</th><th>stddev___discount</th><th>min___paid_value</th><th>min___discount</th><th>max___paid_value</th><th>max___discount</th><th>kurtosis___paid_value</th><th>kurtosis___discount</th><th>skewness___paid_value</th><th>skewness___discount</th><th>increase_rate_sum___paid_value</th><th>increase_rate_sum___discount</th><th>increase_rate_mean___paid_value</th><th>increase_rate_mean___discount</th><th>increase_rate_stddev___paid_value</th><th>increase_rate_stddev___discount</th><th>increase_rate_min___paid_value</th><th>increase_rate_min___discount</th><th>increase_rate_max___paid_value</th><th>increase_rate_max___discount</th><th>increase_rate_kurtosis___paid_value</th><th>increase_rate_kurtosis___discount</th><th>increase_rate_skewness___paid_value</th><th>increase_rate_skewness___discount</th></tr>
+<tr><td>0</td><td>2022-01-01</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr>
+<tr><td>0</td><td>2022-02-01</td><td>8002.543578036849</td><td>55</td><td>1000.3179472546061</td><td>6.875</td><td>118.5476910585547</td><td>8.838834764831844</td><td>724.6474816548626</td><td>0</td><td>1092.4934907204822</td><td>25</td><td>1.8855027332009806</td><td>0.1335510204081629</td><td>-1.764323227323885</td><td>1.0496613364713396</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr>
+<tr><td>0</td><td>2022-03-01</td><td>18183.864504218556</td><td>180</td><td>1010.2146946788087</td><td>10.0</td><td>88.82691760886172</td><td>11.504474832710557</td><td>724.6474816548626</td><td>0</td><td>1114.2036899159368</td><td>25</td><td>4.00337819774453</td><td>-1.6</td><td>-1.8871738944593603</td><td>0.447213595499958</td><td>1.2722606040065259</td><td>2.272727272727273</td><td>0.009893601780678211</td><td>0.45454545454545453</td><td>-0.2507073160540334</td><td>0.301582746911937</td><td>0.0</td><td>null</td><td>0.019872154278134026</td><td>0.0</td><td>1.123241789709885</td><td>-12.980440097799542</td><td>0.06963047656625515</td><td>-0.5739448715874762</td></tr>
+<tr><td>0</td><td>2022-04-01</td><td>23073.719219865256</td><td>250</td><td>1003.2051834724024</td><td>10.869565217391305</td><td>91.68364350589783</td><td>11.246431142310668</td><td>724.6474816548626</td><td>0</td><td>1166.5396308621657</td><td>25</td><td>1.930602398031068</td><td>-1.6379455566406262</td><td>-1.00759236996</td><td>0.3177718469055919</td><td>0.2689117439536728</td><td>0.3888888888888889</td><td>-0.00693863516669...</td><td>0.08695652173913046</td><td>0.03216058796068272</td><td>-0.02242985396136...</td><td>0.0</td><td>null</td><td>0.04697160978723512</td><td>0.0</td><td>-0.5177566788172165</td><td>0.023715972900391347</td><td>-0.466083982552834</td><td>-0.2894405489834404</td></tr>
+<tr><td>0</td><td>2022-05-01</td><td>27898.085780020647</td><td>335</td><td>996.3602064293088</td><td>11.964285714285714</td><td>89.04801902004334</td><td>11.331640863356228</td><td>783.539838218848</td><td>0</td><td>1169.5751292317634</td><td>25</td><td>0.015765997211552918</td><td>-1.7348126758682978</td><td>-0.04146256322646...</td><td>0.14211194159975876</td><td>0.20908491232752222</td><td>0.34</td><td>-0.00682310773096...</td><td>0.10071428571428562</td><td>-0.02874694313042...</td><td>0.00757660096499315</td><td>0.08127035290248173</td><td>null</td><td>0.002602139086654274</td><td>0.0</td><td>-0.9918336384396746</td><td>0.05913940108384488</td><td>-0.9588498638312356</td><td>-0.552786242759953</td></tr>
+</table></div>
+</div>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="../features.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Group by based features</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Felipe Sassi
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

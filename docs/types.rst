@@ -1,4 +1,4 @@
-autofeats.types
+Types
 ---------------
 
 .. automodule:: autofeats.types

@@ -155,9 +155,10 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../autofeats.html">autofeats package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../features.html">autofeats.features.group_by module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../features.html#autofeats-features-window-module">autofeats.features.window module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autofeats.html">make_features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../features.html">features.group_by</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../features.html#autofeats-features-window">autofeats.features.window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../types.html">autofeats.types</a></li>
 </ul>
 
 </div>
@@ -202,6 +203,17 @@
 
 
 <div class="viewcode-block" id="last_observation_value"><a class="viewcode-back" href="../../../features.html#autofeats.features.window.last_observation_value">[docs]</a><span class="k">def</span> <span class="nf">last_observation_value</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function will return the last row (observation) in</span>
+<span class="sd">    the dataset. The columns selected will be only the numerical</span>
+<span class="sd">    ones.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        DataFrame: Dataframe with the features</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">w</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">Window</span><span class="p">()</span>
         <span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">public_join_key_col</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">public_join_date_col</span><span class="p">)</span>
@@ -222,6 +234,17 @@
 
 
 <div class="viewcode-block" id="first_observation_value"><a class="viewcode-back" href="../../../features.html#autofeats.features.window.first_observation_value">[docs]</a><span class="k">def</span> <span class="nf">first_observation_value</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function will return the first row (observation) in</span>
+<span class="sd">    the dataset. The columns selected will be only the numerical</span>
+<span class="sd">    ones.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        DataFrame: Dataframe with the features</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">w</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">Window</span><span class="p">()</span>
         <span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">public_join_key_col</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">public_join_date_col</span><span class="p">)</span>
@@ -244,6 +267,18 @@
 <div class="viewcode-block" id="rate_between_actual_and_past_value"><a class="viewcode-back" href="../../../features.html#autofeats.features.window.rate_between_actual_and_past_value">[docs]</a><span class="k">def</span> <span class="nf">rate_between_actual_and_past_value</span><span class="p">(</span>
     <span class="n">df</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">features</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function should be applied to the generated features. </span>
+<span class="sd">    This function generates the increase rate comparing the feature value</span>
+<span class="sd">    in a date X with the feature value in a date X - 1.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
+<span class="sd">        features (DataFrame): Dataframe with features</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        DataFrame: Dataframe with the features</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">()</span><span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">public_join_key_col</span><span class="p">)</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">public_join_date_col</span><span class="p">)</span>
 
     <span class="n">numerical_cols</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">public_join_key_col</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">public_join_date_col</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
@@ -259,6 +294,17 @@
 
 
 <div class="viewcode-block" id="lags"><a class="viewcode-back" href="../../../features.html#autofeats.features.window.lags">[docs]</a><span class="k">def</span> <span class="nf">lags</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">features</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function should be applied to the generated features. </span>
+<span class="sd">    This function applies a lag function to the features table.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
+<span class="sd">        features (DataFrame): Dataframe with features</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        DataFrame: Dataframe with the features</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">()</span><span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">public_join_key_col</span><span class="p">)</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">public_join_date_col</span><span class="p">)</span>
 
     <span class="n">n_lags</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;options&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;n_lags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]})[</span><span class="s2">&quot;n_lags&quot;</span><span class="p">]</span>

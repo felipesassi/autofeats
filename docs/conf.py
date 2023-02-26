@@ -18,11 +18,10 @@ author = "Felipe Sassi"
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx.ext.autodoc", "sphinx.ext.viewcode", "sphinx.ext.napoleon"]
+extensions = ["nbsphinx", "sphinx.ext.autodoc", "sphinx.ext.viewcode", "sphinx.ext.napoleon"]
 
 templates_path = ["_templates"]
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
-
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]  # , "**.ipynb_checkpoints"]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -34,3 +33,5 @@ autodoc_typehints = "description"
 
 # Don't show class signature with the class' name.
 # autodoc_class_signature = "separated"
+
+# source_suffix = [".rst", ".md", ".ipynb"]

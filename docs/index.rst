@@ -13,11 +13,13 @@ Welcome to autofeats's documentation!
    autofeats
    ---------
 
-   features
-   --------
-
    types
    -------
+
+   features
+   --------
+   
+   /examples/use_cases
 
 Indices and tables
 ==================

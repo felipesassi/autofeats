@@ -222,7 +222,7 @@
 
 <div class="viewcode-block" id="correlation_between_features"><a class="viewcode-back" href="../../../features.html#autofeats.features.group_by.correlation_between_features">[docs]</a><span class="k">def</span> <span class="nf">correlation_between_features</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Column</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This function generates the expressions used to calculate the </span>
+<span class="sd">    This function generates the expressions used to calculate the</span>
 <span class="sd">    correlation between numerical features. All numerical features will be</span>
 <span class="sd">    combinated into groups of two.</span>
 
@@ -240,6 +240,19 @@
 
 
 <div class="viewcode-block" id="numerical_statistics"><a class="viewcode-back" href="../../../features.html#autofeats.features.group_by.numerical_statistics">[docs]</a><span class="k">def</span> <span class="nf">numerical_statistics</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Column</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function generates numerical statisticst about the</span>
+<span class="sd">    numerical columns in the dataset. The statistics will be</span>
+<span class="sd">    calculated inside a time window, defined in the dataset</span>
+<span class="sd">    instantiation.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[Column]: List with the operations to apply in the dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">functions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Column</span><span class="p">],</span> <span class="n">Column</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">,</span>
         <span class="n">F</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
@@ -260,14 +273,17 @@
 
 
 <div class="viewcode-block" id="count_occurences_of_each_category"><a class="viewcode-back" href="../../../features.html#autofeats.features.group_by.count_occurences_of_each_category">[docs]</a><span class="k">def</span> <span class="nf">count_occurences_of_each_category</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Column</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;testes</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function counts the occorurences of each category inside a</span>
+<span class="sd">    categorical column.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        df (Dataset): _description_</span>
+<span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        List[Column]: test</span>
+<span class="sd">        List[Column]: List with the operations to apply in the dataframe</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">functions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Column</span><span class="p">],</span> <span class="n">Column</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">F</span><span class="o">.</span><span class="n">count</span><span class="p">]</span>
 
     <span class="n">categories_to_analyze</span> <span class="o">=</span> <span class="n">get_categories_from_categorical_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
@@ -283,6 +299,16 @@
 
 
 <div class="viewcode-block" id="count_categorical_values"><a class="viewcode-back" href="../../../features.html#autofeats.features.group_by.count_categorical_values">[docs]</a><span class="k">def</span> <span class="nf">count_categorical_values</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Column</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function will apply count and countDistinct to</span>
+<span class="sd">    the categorical columns as a whole.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[Column]: List with the operations to apply in the dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">functions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Column</span><span class="p">],</span> <span class="n">Column</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">F</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">countDistinct</span><span class="p">]</span>
 
     <span class="n">categories_to_analyze</span> <span class="o">=</span> <span class="n">get_categories_from_categorical_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
@@ -297,12 +323,32 @@
 
 
 <div class="viewcode-block" id="categorical_statistics"><a class="viewcode-back" href="../../../features.html#autofeats.features.group_by.categorical_statistics">[docs]</a><span class="k">def</span> <span class="nf">categorical_statistics</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Column</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function applies count_occurences_of_each_category</span>
+<span class="sd">    and count_categorical_values to the dataset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[Column]: List with the operations to apply in the dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">count_occurences_of_each_category</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="n">count_categorical_values</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="statistics_of_numerical_data_in_categorical_groups"><a class="viewcode-back" href="../../../features.html#autofeats.features.group_by.statistics_of_numerical_data_in_categorical_groups">[docs]</a><span class="k">def</span> <span class="nf">statistics_of_numerical_data_in_categorical_groups</span><span class="p">(</span>
     <span class="n">df</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Column</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function will calculate numerical statistics using a</span>
+<span class="sd">    pivoted version of the dataset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (Dataset): Dataset initialized with necessary information</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[Column]: List with the operations to apply in the dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">functions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Column</span><span class="p">],</span> <span class="n">Column</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">,</span>
         <span class="n">F</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
